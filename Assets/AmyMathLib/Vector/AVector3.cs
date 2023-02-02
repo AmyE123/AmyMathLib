@@ -51,6 +51,30 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
+        /// Calculates the dot product of two AVector3's
+        /// </summary>
+        /// <param name="ShouldNormalize">Whether we should normalize the vectors before calculating the dot product</param>
+        /// <returns>A measure of how closely the two vectors align, in terms of the directons they point, a scalar number.</returns>
+        public float GetDotProduct(AVector3 a, AVector3 b, bool ShouldNormalize = true)
+        {
+            float rv = 0.0f;
+
+            if (ShouldNormalize)
+            {
+                AVector3 normalizedA = a.NormalizeVector();
+                AVector3 normalizedB = b.NormalizeVector();
+
+                rv = normalizedA.x * normalizedB.x + normalizedA.y * normalizedB.y + normalizedA.z * normalizedB.z;
+            }
+            else
+            {
+                rv = a.x * b.x + a.y * b.y + a.z * b.z;
+            }
+
+            return rv;
+        }
+
+        /// <summary>
         /// Takes the AVector3 and scales it by the scalar
         /// </summary>
         /// <param name="a">The vector which you want to scale</param>
