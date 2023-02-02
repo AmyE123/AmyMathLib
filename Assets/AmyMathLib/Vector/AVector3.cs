@@ -83,9 +83,7 @@ namespace AmyMathLib.Vector
         /// <returns>A new AVector3 with a length of 1</returns>
         public AVector3 NormalizeVector(AVector3 a)
         {
-            AVector3 rv = new AVector3(0, 0, 0);
-
-            rv = DivideVector(this, GetMagnitude());
+            AVector3 rv = DivideVector(this, GetMagnitude());
 
             return rv;
         }
