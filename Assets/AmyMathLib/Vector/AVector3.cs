@@ -77,6 +77,20 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
+        /// Normalizes the vector to give it a length of 1
+        /// </summary>
+        /// <param name="a">The vector to normalize</param>
+        /// <returns>A new AVector3 with a length of 1</returns>
+        public AVector3 NormalizeVector(AVector3 a)
+        {
+            AVector3 rv = new AVector3(0, 0, 0);
+
+            rv = DivideVector(this, GetMagnitude());
+
+            return rv;
+        }
+
+        /// <summary>
         /// Converts from AVector3 to a Unity Vector3
         /// </summary>
         /// <returns>A Unity-compatible Vector3</returns>
