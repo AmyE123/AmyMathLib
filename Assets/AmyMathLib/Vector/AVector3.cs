@@ -1,4 +1,4 @@
-namespace AmyMathLib.Vector 
+namespace AmyMathLib.Vector
 {
     using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace AmyMathLib.Vector
             this.z = z;
         }
 
-        static AVector3 AddVector(AVector3 a, AVector3 b)
+        static AVector3 AddVector3(AVector3 a, AVector3 b)
         {
             AVector3 rv = new AVector3(a.x + b.x, a.y + b.y, a.z + b.z);
 
@@ -30,7 +30,7 @@ namespace AmyMathLib.Vector
         /// <summary>
         /// Uses pythagorean theorem to calculate the magnitude of the vector from (0,0,0). 
         /// </summary>
-        /// <returns>The magnitude/length of MyVector3 from (0,0,0)</returns>
+        /// <returns>The magnitude/length of AVector3 from (0,0,0)</returns>
         public float GetMagnitude()
         {
             // Length = Square Root of X^2 + Y^2 + Z^2
@@ -43,7 +43,7 @@ namespace AmyMathLib.Vector
         /// Converts from AVector3 to a Unity Vector3
         /// </summary>
         /// <returns>A Unity-compatible Vector3</returns>
-        public Vector3 ToUnityVector()
+        public Vector3 ToUnityVector3()
         {
             Vector3 rv = new Vector3(x, y, z);
 
@@ -51,10 +51,10 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
-        /// Converts from a Unity Vector3 to MyVector3
+        /// Converts from a Unity Vector3 to AVector3
         /// </summary>
         /// <returns>AVector3-compatible Unity Vector</returns>
-        public static AVector3 ToMyVector(Vector3 a)
+        public static AVector3 ToAVector3(Vector3 a)
         {
             AVector3 rv = new AVector3(a.x, a.y, a.z);
 
