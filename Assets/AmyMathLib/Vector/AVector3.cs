@@ -28,13 +28,24 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
-        /// Uses pythagorean theorem to calculate the magnitude of the vector from (0,0,0). 
+        /// Uses pythagorean theorem to calculate the length of the vector
         /// </summary>
-        /// <returns>The magnitude/length of AVector3 from (0,0,0)</returns>
-        public float GetMagnitude()
+        /// <returns>The length of AVector3</returns>
+        public static float GetMagnitude()
         {
             // Length = Square Root of X^2 + Y^2 + Z^2
             float rv = Mathf.Sqrt(x * x + y * y + z * z);
+
+            return rv;
+        }
+
+        /// <summary>
+        /// Calculates the length squared of the vector
+        /// </summary>
+        /// <returns>The length squared</returns>
+        public static float GetMagnitudeSquared()
+        {
+            float rv = x * x + y * y + z * z;
 
             return rv;
         }
