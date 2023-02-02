@@ -51,6 +51,32 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
+        /// Takes the AVector3 and scales it by the scalar
+        /// </summary>
+        /// <param name="a">The vector which you want to scale</param>
+        /// <param name="scalar">The amount you want the vector to scale by</param>
+        /// <returns>A new scaled AVector3</returns>
+        public static AVector3 ScaleVector(AVector3 a, float scalar)
+        { 
+            AVector3 rv = new AVector3(a.x * scalar, a.y * scalar, a.z * scalar);
+
+            return rv;
+        }
+
+        /// <summary>
+        /// Takes the AVector3 and divides it by the divisor
+        /// </summary>
+        /// <param name="a">The vector which you want to divide</param>
+        /// <param name="divisor">The amount you want the vector to divide by</param>
+        /// <returns>A new divided AVector3</returns>
+        public static AVector3 DivideVector(AVector3 a, float divisor)
+        {
+            AVector3 rv = new AVector3(a.x / divisor, a.y / divisor, a.z / divisor);
+
+            return rv;
+        }
+
+        /// <summary>
         /// Converts from AVector3 to a Unity Vector3
         /// </summary>
         /// <returns>A Unity-compatible Vector3</returns>
