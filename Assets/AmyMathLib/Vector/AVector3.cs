@@ -81,7 +81,7 @@ namespace AmyMathLib.Vector
         /// <param name="scalar">The amount you want the vector to scale by</param>
         /// <returns>A new scaled AVector3</returns>
         public static AVector3 ScaleVector(AVector3 a, float scalar)
-        { 
+        {
             AVector3 rv = new AVector3(a.x * scalar, a.y * scalar, a.z * scalar);
 
             return rv;
