@@ -31,7 +31,7 @@ namespace AmyMathLib.Vector
         /// Uses pythagorean theorem to calculate the length of the vector
         /// </summary>
         /// <returns>The length of AVector3</returns>
-        public static float GetMagnitude()
+        public float GetMagnitude()
         {
             // Length = Square Root of X^2 + Y^2 + Z^2
             float rv = Mathf.Sqrt(x * x + y * y + z * z);
@@ -43,7 +43,7 @@ namespace AmyMathLib.Vector
         /// Calculates the length squared of the vector
         /// </summary>
         /// <returns>The length squared</returns>
-        public static float GetMagnitudeSquared()
+        public float GetMagnitudeSquared()
         {
             float rv = x * x + y * y + z * z;
 
@@ -80,7 +80,7 @@ namespace AmyMathLib.Vector
         /// <param name="a">The vector which you want to scale</param>
         /// <param name="scalar">The amount you want the vector to scale by</param>
         /// <returns>A new scaled AVector3</returns>
-        public static AVector3 ScaleVector(AVector3 a, float scalar)
+        static AVector3 ScaleVector(AVector3 a, float scalar)
         {
             AVector3 rv = new AVector3(a.x * scalar, a.y * scalar, a.z * scalar);
 
@@ -93,7 +93,7 @@ namespace AmyMathLib.Vector
         /// <param name="a">The vector which you want to divide</param>
         /// <param name="divisor">The amount you want the vector to divide by</param>
         /// <returns>A new divided AVector3</returns>
-        public static AVector3 DivideVector(AVector3 a, float divisor)
+        static AVector3 DivideVector(AVector3 a, float divisor)
         {
             AVector3 rv = new AVector3(a.x / divisor, a.y / divisor, a.z / divisor);
 
@@ -103,12 +103,10 @@ namespace AmyMathLib.Vector
         /// <summary>
         /// Normalizes the vector to give it a length of 1
         /// </summary>
-        /// <param name="a">The vector to normalize</param>
         /// <returns>A new AVector3 with a length of 1</returns>
-        public AVector3 NormalizeVector(AVector3 a)
+        public AVector3 NormalizeVector()
         {
             AVector3 rv = DivideVector(this, GetMagnitude());
-
             return rv;
         }
 
