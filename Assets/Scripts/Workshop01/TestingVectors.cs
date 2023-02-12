@@ -15,8 +15,8 @@ public class TestingVectors : MonoBehaviour
 
     void Start()
     {
-        GameObjectPositions.Add(AVector3.ToMyVector(GameObjects[0].transform.position));
-        GameObjectPositions.Add(AVector3.ToMyVector(GameObjects[1].transform.position));
+        GameObjectPositions.Add(AVector3.ToAVector3(GameObjects[0].transform.position));
+        GameObjectPositions.Add(AVector3.ToAVector3(GameObjects[1].transform.position));
 
         Magnitudes.Add(GameObjectPositions[0].GetMagnitude());
         Magnitudes.Add(GameObjectPositions[1].GetMagnitude());
@@ -28,7 +28,7 @@ public class TestingVectors : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObjects[1].transform.position = GameObjectPositions[0].ToUnityVector();
+            GameObjects[1].transform.position = GameObjectPositions[0].ToUnityVector3();
         }
     }
 }
