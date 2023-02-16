@@ -13,18 +13,15 @@ namespace AmyMathLib.Vector
             this.z = z;
         }
 
-        static AVector3 AddVector3(AVector3 a, AVector3 b)
+        #region Operator Overloads
+        public static AVector3 operator +(AVector3 a, AVector3 b)
         {
-            AVector3 rv = new AVector3(a.x + b.x, a.y + b.y, a.z + b.z);
-
-            return rv;
+            return AddVector3(a, b);
         }
 
-        public static AVector3 SubtractVector(AVector3 a, AVector3 b)
+        public static AVector3 operator -(AVector3 a, AVector3 b)
         {
-            AVector3 rv = new AVector3(a.x - b.x, a.y - b.y, a.z - b.z);
-
-            return rv;
+            return SubtractVector3(a, b);
         }
 
         public static AVector3 operator *(AVector3 a, float b)
@@ -36,6 +33,50 @@ namespace AmyMathLib.Vector
         {
             return DivideVector(a, b);
         }
+        #endregion
+
+        #region Operator Functions
+        public static AVector3 AddVector3(AVector3 a, AVector3 b)
+        {
+            AVector3 rv = new AVector3(a.x + b.x, a.y + b.y, a.z + b.z);
+
+            return rv;
+        }
+
+        public static AVector3 SubtractVector3(AVector3 a, AVector3 b)
+        {
+            AVector3 rv = new AVector3(a.x - b.x, a.y - b.y, a.z - b.z);
+
+            return rv;
+        }
+
+        /// <summary>
+        /// Takes the AVector3 and scales it by the scalar
+        /// </summary>
+        /// <param name="a">The vector which you want to scale</param>
+        /// <param name="scalar">The amount you want the vector to scale by</param>
+        /// <returns>A new scaled AVector3</returns>
+        static AVector3 ScaleVector(AVector3 a, float scalar)
+        {
+            AVector3 rv = new AVector3(a.x * scalar, a.y * scalar, a.z * scalar);
+
+            return rv;
+        }
+
+        /// <summary>
+        /// Takes the AVector3 and divides it by the divisor
+        /// </summary>
+        /// <param name="a">The vector which you want to divide</param>
+        /// <param name="divisor">The amount you want the vector to divide by</param>
+        /// <returns>A new divided AVector3</returns>
+        static AVector3 DivideVector(AVector3 a, float divisor)
+        {
+            AVector3 rv = new AVector3(a.x / divisor, a.y / divisor, a.z / divisor);
+
+            return rv;
+        }
+        #endregion
+
 
         /// <summary>
         /// Uses pythagorean theorem to calculate the length of the vector
@@ -84,31 +125,9 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
-        /// <summary>
-        /// Takes the AVector3 and scales it by the scalar
-        /// </summary>
-        /// <param name="a">The vector which you want to scale</param>
-        /// <param name="scalar">The amount you want the vector to scale by</param>
-        /// <returns>A new scaled AVector3</returns>
-        static AVector3 ScaleVector(AVector3 a, float scalar)
-        {
-            AVector3 rv = new AVector3(a.x * scalar, a.y * scalar, a.z * scalar);
 
-            return rv;
-        }
 
-        /// <summary>
-        /// Takes the AVector3 and divides it by the divisor
-        /// </summary>
-        /// <param name="a">The vector which you want to divide</param>
-        /// <param name="divisor">The amount you want the vector to divide by</param>
-        /// <returns>A new divided AVector3</returns>
-        static AVector3 DivideVector(AVector3 a, float divisor)
-        {
-            AVector3 rv = new AVector3(a.x / divisor, a.y / divisor, a.z / divisor);
 
-            return rv;
-        }
 
         /// <summary>
         /// Normalizes the vector to give it a length of 1

@@ -39,7 +39,7 @@ public class IntermediateVectors : MonoBehaviour
 
        
         //ev velo = subtract (ev pos - previous pos)
-        _evaderVelocity = AVector3.SubtractVector(_evaderPosition, _previousEvaderPosition);
+        _evaderVelocity = AVector3.SubtractVector3(_evaderPosition, _previousEvaderPosition);
         
         // prev pos = transform.pos
         _previousEvaderPosition = AVector3.ToAVector3(_evader.transform.position);
@@ -48,7 +48,7 @@ public class IntermediateVectors : MonoBehaviour
     void PursuerMovement()
     {
         AVector3 pursuerPosition = AVector3.ToAVector3(_pursuer.transform.position);
-        AVector3 pursuerDirection = AVector3.SubtractVector(AVector3.ToAVector3(_evader.transform.position), pursuerPosition);
+        AVector3 pursuerDirection = AVector3.SubtractVector3(AVector3.ToAVector3(_evader.transform.position), pursuerPosition);
         AVector3 pursuerDirectionNormalised = pursuerDirection.NormalizeVector();
 
         //float dotProduct = AVector3.GetDotProduct(pursuerDirectionNormalised, _evaderVelocity.NormalizeVector(), false);

@@ -2,7 +2,7 @@ using UnityEngine;
 using AmyMathLib.Vector;
 using System.Collections.Generic;
 
-public class TestingVectors : MonoBehaviour
+public class BeginnerVectors : MonoBehaviour
 {
     [SerializeField]
     GameObject[] GameObjects;
