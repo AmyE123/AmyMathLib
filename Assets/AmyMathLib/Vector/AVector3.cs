@@ -20,18 +20,28 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
-        static AVector3 SubtractVector(AVector3 a, AVector3 b)
+        public static AVector3 SubtractVector(AVector3 a, AVector3 b)
         {
             AVector3 rv = new AVector3(a.x - b.x, a.y - b.y, a.z - b.z);
 
             return rv;
         }
 
+        public static AVector3 operator *(AVector3 a, float b)
+        {
+            return ScaleVector(a, b);
+        }
+
+        public static AVector3 operator /(AVector3 a, float b)
+        {
+            return DivideVector(a, b);
+        }
+
         /// <summary>
         /// Uses pythagorean theorem to calculate the length of the vector
         /// </summary>
         /// <returns>The length of AVector3</returns>
-        public float GetMagnitude()
+        public float GetLength()
         {
             // Length = Square Root of X^2 + Y^2 + Z^2
             float rv = Mathf.Sqrt(x * x + y * y + z * z);
@@ -55,7 +65,7 @@ namespace AmyMathLib.Vector
         /// </summary>
         /// <param name="ShouldNormalize">Whether we should normalize the vectors before calculating the dot product</param>
         /// <returns>A measure of how closely the two vectors align, in terms of the directons they point, a scalar number.</returns>
-        public float GetDotProduct(AVector3 a, AVector3 b, bool ShouldNormalize = true)
+        public static float GetDotProduct(AVector3 a, AVector3 b, bool ShouldNormalize = true)
         {
             float rv = 0.0f;
 
@@ -106,7 +116,13 @@ namespace AmyMathLib.Vector
         /// <returns>A new AVector3 with a length of 1</returns>
         public AVector3 NormalizeVector()
         {
-            AVector3 rv = DivideVector(this, GetMagnitude());
+            AVector3 rv = new AVector3(0, 0, 0);
+            rv.x = x;
+            rv.y = y;
+            rv.z = z;
+
+            rv = rv / rv.GetLength();
+
             return rv;
         }
 
@@ -118,6 +134,12 @@ namespace AmyMathLib.Vector
         {
             Vector3 rv = new Vector3(x, y, z);
 
+            return rv;
+        }
+
+        public static Vector3 ToUnityVector3(AVector3 a)
+        {
+            Vector3 rv = new Vector3(a.x, a.y, a.z);
             return rv;
         }
 
