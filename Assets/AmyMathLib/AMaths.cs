@@ -102,8 +102,12 @@ namespace AmyMathLib.Maths
 
             // TODO: Fix this, wrong coordinate system
             rv.x = Mathf.Cos(EulerAngle.y) * Mathf.Cos(EulerAngle.x);
-            rv.y = Mathf.Sin(EulerAngle.x);
-            rv.z = Mathf.Cos(EulerAngle.x) * Mathf.Sin(EulerAngle.y);
+            rv.y = Mathf.Sin(EulerAngle.y) * Mathf.Cos(EulerAngle.x);
+            rv.z = Mathf.Sin(EulerAngle.x);
+
+            //rv.x = Mathf.Cos(EulerAngle.y) * Mathf.Cos(EulerAngle.x);
+            //rv.y = Mathf.Sin(EulerAngle.x);
+            //rv.z = Mathf.Cos(EulerAngle.x) * Mathf.Sin(EulerAngle.y);
 
             return rv;
         }
