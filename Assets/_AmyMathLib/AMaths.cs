@@ -139,5 +139,19 @@ namespace AmyMathLib.Maths
             return rv;
         }
         #endregion
+
+        public static float Lerp(AVector3 a, AVector3 b)
+        {
+            float rv = 0;
+
+            return rv;
+        }
+
+        public static float Lerp(AVector2 a, AVector2 b)
+        {
+            float rv = 0;
+
+            return rv;
+        }
     }
 }
