@@ -96,7 +96,7 @@ namespace AmyMathLib.Maths
             return rv;
         }
 
-        public static AVector3 EulerAnglesToDirection(AVector3 EulerAngle)
+        public static AVector3 EulerAngleToDirection(AVector3 EulerAngle)
         {
             AVector3 rv = new AVector3(0, 0, 0);
 
