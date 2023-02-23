@@ -140,7 +140,7 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
-        /// Converts from AVector2 to a Unity Vector2
+        /// Converts to a Unity Vector2
         /// </summary>
         /// <returns>A Unity-compatible Vector2</returns>
         public Vector2 ToUnityVector2()
@@ -150,6 +150,10 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
+        /// <summary>
+        /// Converts from AVector3 to a Unity Vector3
+        /// </summary>
+        /// <returns>A Unity-compatible Vector3</returns>
         public static Vector2 ToUnityVector2(AVector2 a)
         {
             Vector2 rv = new Vector2(a.x, a.y);

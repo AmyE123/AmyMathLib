@@ -125,10 +125,6 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
-
-
-
-
         /// <summary>
         /// Normalizes the vector to give it a length of 1
         /// </summary>
@@ -146,7 +142,7 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
-        /// Converts from AVector3 to a Unity Vector3
+        /// Converts to a Unity Vector3
         /// </summary>
         /// <returns>A Unity-compatible Vector3</returns>
         public Vector3 ToUnityVector3()
@@ -156,6 +152,10 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
+        /// <summary>
+        /// Converts from AVector3 to a Unity Vector3
+        /// </summary>
+        /// <returns>A Unity-compatible Vector3</returns>
         public static Vector3 ToUnityVector3(AVector3 a)
         {
             Vector3 rv = new Vector3(a.x, a.y, a.z);
