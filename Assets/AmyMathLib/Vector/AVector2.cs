@@ -55,7 +55,7 @@ namespace AmyMathLib.Vector
         /// <param name="a">The vector which you want to scale</param>
         /// <param name="scalar">The amount you want the vector to scale by</param>
         /// <returns>A new scaled AVector2</returns>
-        static AVector2 ScaleVector(AVector2 a, float scalar)
+        public static AVector2 ScaleVector(AVector2 a, float scalar)
         {
             AVector2 rv = new AVector2(a.x * scalar, a.y * scalar);
 
@@ -68,7 +68,7 @@ namespace AmyMathLib.Vector
         /// <param name="a">The vector which you want to divide</param>
         /// <param name="divisor">The amount you want the vector to divide by</param>
         /// <returns>A new divided AVector2</returns>
-        static AVector2 DivideVector(AVector2 a, float divisor)
+        public static AVector2 DivideVector(AVector2 a, float divisor)
         {
             AVector2 rv = new AVector2(a.x / divisor, a.y / divisor);
 
@@ -101,30 +101,6 @@ namespace AmyMathLib.Vector
         }
 
         /// <summary>
-        /// Calculates the dot product of two AVector2's
-        /// </summary>
-        /// <param name="ShouldNormalize">Whether we should normalize the vectors before calculating the dot product</param>
-        /// <returns>A measure of how closely the two vectors align, in terms of the directons they point, a scalar number.</returns>
-        public static float GetDotProduct(AVector2 a, AVector2 b, bool ShouldNormalize = true)
-        {
-            float rv = 0.0f;
-
-            if (ShouldNormalize)
-            {
-                AVector2 normalizedA = a.NormalizeVector();
-                AVector2 normalizedB = b.NormalizeVector();
-
-                rv = normalizedA.x * normalizedB.x + normalizedA.y * normalizedB.y;
-            }
-            else
-            {
-                rv = a.x * b.x + a.y * b.y;
-            }
-
-            return rv;
-        }
-
-        /// <summary>
         /// Normalizes the vector to give it a length of 1
         /// </summary>
         /// <returns>A new AVector2 with a length of 1</returns>
@@ -146,27 +122,6 @@ namespace AmyMathLib.Vector
         public Vector2 ToUnityVector2()
         {
             Vector2 rv = new Vector2(x, y);
-
-            return rv;
-        }
-
-        /// <summary>
-        /// Converts from AVector3 to a Unity Vector3
-        /// </summary>
-        /// <returns>A Unity-compatible Vector3</returns>
-        public static Vector2 ToUnityVector2(AVector2 a)
-        {
-            Vector2 rv = new Vector2(a.x, a.y);
-            return rv;
-        }
-
-        /// <summary>
-        /// Converts from a Unity Vector2 to AVector2
-        /// </summary>
-        /// <returns>AVector2-compatible Unity Vector</returns>
-        public static AVector2 ToAVector2(Vector2 a)
-        {
-            AVector2 rv = new AVector2(a.x, a.y);
 
             return rv;
         }

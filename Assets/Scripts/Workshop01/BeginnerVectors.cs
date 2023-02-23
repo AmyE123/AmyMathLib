@@ -1,5 +1,6 @@
 using UnityEngine;
 using AmyMathLib.Vector;
+using AmyMathLib.Maths;
 using System.Collections.Generic;
 
 public class BeginnerVectors : MonoBehaviour
@@ -15,8 +16,8 @@ public class BeginnerVectors : MonoBehaviour
 
     void Start()
     {
-        GameObjectPositions.Add(AVector3.ToAVector3(GameObjects[0].transform.position));
-        GameObjectPositions.Add(AVector3.ToAVector3(GameObjects[1].transform.position));
+        GameObjectPositions.Add(AMaths.ToAVector(GameObjects[0].transform.position));
+        GameObjectPositions.Add(AMaths.ToAVector(GameObjects[1].transform.position));
 
         Magnitudes.Add(GameObjectPositions[0].GetLength());
         Magnitudes.Add(GameObjectPositions[1].GetLength());
