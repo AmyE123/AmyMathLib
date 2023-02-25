@@ -141,17 +141,24 @@ namespace AmyMathLib.Maths
         #endregion
 
         // TODO: Implement LERP V3
-        public static float Lerp(AVector3 a, AVector3 b)
+        public static AVector3 Lerp(AVector3 a, AVector3 b, float speed)
         {
-            float rv = 0;
+            AVector3 rv = new AVector3(0,0,0);
+
+            rv.x = Mathf.Lerp(a.x, b.x, speed);
+            rv.y = Mathf.Lerp(a.y, b.y, speed);
+            rv.z = Mathf.Lerp(a.z, b.z, speed);
 
             return rv;
         }
 
         // TODO: Implement LERP V2
-        public static float Lerp(AVector2 a, AVector2 b)
+        public static AVector2 Lerp(AVector2 a, AVector2 b, float speed)
         {
-            float rv = 0;
+            AVector2 rv = new AVector2(0,0);
+
+            rv.x = Mathf.Lerp(a.x, b.x, speed);
+            rv.y = Mathf.Lerp(a.y, b.y, speed);
 
             return rv;
         }
