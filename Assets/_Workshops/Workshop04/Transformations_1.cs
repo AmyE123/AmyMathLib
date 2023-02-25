@@ -1,8 +1,9 @@
 using UnityEngine;
 using AmyMathLib.Vector;
 using AmyMathLib.Maths;
+using AmyMathLib.Matrix;
 
-public class IntermediateVectors : MonoBehaviour
+public class Transformations_1 : MonoBehaviour
 {
     [SerializeField]
     private GameObject _evader;
@@ -16,31 +17,38 @@ public class IntermediateVectors : MonoBehaviour
     [SerializeField]
     private float _pursuerSpeed = 5;
 
-    private AVector3 _previousEvaderPosition;
-    private AVector3 _evaderPosition;
+    [SerializeField]
+    private Transform _from;
+
+    [SerializeField]
+    private Transform _to;
+
+    [SerializeField]
+    private AMatrix4x4 _matrix;
+
+    private Vector3 _pursuerPos;
+    private Vector3 _evaderPos;
 
     private void Start()
-    {
-        _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);       
+    {       
+        _pursuerPos = _pursuer.transform.position;
+        _evaderPos= _evader.transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        _evaderPosition = AMaths.ToAVector(transform.position);
-
         EvaderMovement();
         PursuerMovement();
-        
-        _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);
     }
 
     void PursuerMovement()
     {
-        AVector3 pursuerPosition = AMaths.ToAVector(_pursuer.transform.position);
-        AVector3 pursuerDirection = AVector3.SubtractVector3(AMaths.ToAVector(_evader.transform.position), pursuerPosition);
-        AVector3 pursuerDirectionNormalised = pursuerDirection.NormalizeVector();
+        var from = AMaths.ToAVector(_pursuerPos);
+        var to = AMaths.ToAVector(_evaderPos);
 
-        _pursuer.transform.position += AMaths.ToUnityVector(pursuerDirectionNormalised) * _pursuerSpeed * Time.deltaTime;        
+        var lerp = AMaths.Lerp(from, to, Time.deltaTime * _pursuerSpeed);
+
+        _pursuer.transform.position = lerp.ToUnityVector3();
     }
 
     void EvaderMovement()
