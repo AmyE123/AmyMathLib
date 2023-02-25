@@ -1,7 +1,6 @@
 namespace AmyMathLib.Matrix
 {
     using AmyMathLib.Vector;
-    using UnityEngine;
 
     public class AMatrix4x4
     {
@@ -67,7 +66,14 @@ namespace AmyMathLib.Matrix
 
         public static AVector4 operator *(AMatrix4x4 lhs, AVector4 rhs)
         {
-            return new AVector4(0, 0, 0, 0);
+            AVector4 rv = new AVector4(0, 0, 0, 0);
+
+            rv.x = lhs.values[0, 0] * rhs.x + lhs.values[0, 1] * rhs.y + lhs.values[0, 2] * rhs.z + lhs.values[0, 3] * rhs.w;
+            rv.y = lhs.values[1, 0] * rhs.x + lhs.values[1, 1] * rhs.y + lhs.values[1, 2] * rhs.z + lhs.values[1, 3] * rhs.w;
+            rv.z = lhs.values[2, 0] * rhs.x + lhs.values[2, 1] * rhs.y + lhs.values[2, 2] * rhs.z + lhs.values[2, 3] * rhs.w;
+            rv.w = lhs.values[3, 0] * rhs.x + lhs.values[3, 1] * rhs.y + lhs.values[3, 2] * rhs.z + lhs.values[3, 3] * rhs.w;
+
+            return rv;
         }
     }
 }

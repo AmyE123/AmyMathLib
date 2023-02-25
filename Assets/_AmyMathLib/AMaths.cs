@@ -140,6 +140,7 @@ namespace AmyMathLib.Maths
         }
         #endregion
 
+        // TODO: Implement LERP V3
         public static float Lerp(AVector3 a, AVector3 b)
         {
             float rv = 0;
@@ -147,6 +148,7 @@ namespace AmyMathLib.Maths
             return rv;
         }
 
+        // TODO: Implement LERP V2
         public static float Lerp(AVector2 a, AVector2 b)
         {
             float rv = 0;
