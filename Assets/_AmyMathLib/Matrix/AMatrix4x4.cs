@@ -75,5 +75,16 @@ namespace AmyMathLib.Matrix
 
             return rv;
         }
+
+        public static AVector3 operator *(AMatrix4x4 lhs, AVector3 rhs)
+        {
+            AVector3 rv = new AVector3(0, 0, 0);
+
+            rv.x = lhs.values[0, 0] * rhs.x + lhs.values[0, 1] * rhs.y + lhs.values[0, 2] * rhs.z;
+            rv.y = lhs.values[1, 0] * rhs.x + lhs.values[1, 1] * rhs.y + lhs.values[1, 2] * rhs.z;
+            rv.z = lhs.values[2, 0] * rhs.x + lhs.values[2, 1] * rhs.y + lhs.values[2, 2] * rhs.z;
+
+            return rv;
+        }
     }
 }
