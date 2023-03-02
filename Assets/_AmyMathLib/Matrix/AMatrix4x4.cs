@@ -62,7 +62,42 @@ namespace AmyMathLib.Matrix
             values[1, 3] = column4.y;
             values[2, 3] = column4.z;
             values[3, 3] = 1;
-        }        
+        }
+        
+        public static AMatrix4x4 Identity
+        {
+            get 
+            {
+                return new AMatrix4x4(
+                    new AVector4(1, 0, 0, 0),
+                    new AVector4(0, 1, 0, 0),
+                    new AVector4(0, 0, 1, 0),
+                    new AVector4(0, 0, 0, 1));
+            }
+        }
+
+        public static AMatrix4x4 operator *(AMatrix4x4 a, AMatrix4x4 b)
+        {
+            // new AMatrix4x4
+            AMatrix4x4 rv = new AMatrix4x4(new AVector4(0,0,0,0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0));
+
+            //row of a
+            for (int i = 0; i < 4; i++)
+            {
+                //column of b
+                for (int j = 0; j < 4; j++)
+                {
+                    rv.values[i, j] = 
+                        a.values[i, 0] * b.values[0, j] + 
+                        a.values[i, 1] * b.values[1, j] + 
+                        a.values[i, 2] * b.values[2, j] + 
+                        a.values[i, 3] * b.values[3, j] + 
+                        a.values[i, 4] * b.values[4, j];
+                }
+            }
+
+            return rv;
+        }
 
         public static AVector4 operator *(AMatrix4x4 lhs, AVector4 rhs)
         {
@@ -76,6 +111,7 @@ namespace AmyMathLib.Matrix
             return rv;
         }
 
+        //TODO: REMOVE THIS
         public static AVector3 operator *(AMatrix4x4 lhs, AVector3 rhs)
         {
             AVector3 rv = new AVector3(0, 0, 0);
