@@ -82,17 +82,16 @@ namespace AmyMathLib.Matrix
             AMatrix4x4 rv = new AMatrix4x4(new AVector4(0,0,0,0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0));
 
             //row of a
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 //column of b
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 3; j++)
                 {
-                    rv.values[i, j] = 
-                        a.values[i, 0] * b.values[0, j] + 
-                        a.values[i, 1] * b.values[1, j] + 
-                        a.values[i, 2] * b.values[2, j] + 
-                        a.values[i, 3] * b.values[3, j] + 
-                        a.values[i, 4] * b.values[4, j];
+                    rv.values[i, j] =
+                        a.values[i, 0] * b.values[0, j] +
+                        a.values[i, 1] * b.values[1, j] +
+                        a.values[i, 2] * b.values[2, j] +
+                        a.values[i, 3] * b.values[3, j];
                 }
             }
 
