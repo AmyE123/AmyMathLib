@@ -59,7 +59,7 @@ namespace BlockyRoad
 
         void Update()
         {
-            if ((int)_manager.CurrentLevel.ActiveSide == _playerIdIdx)
+            if ((int)_manager.CurrentLevel.ActiveSide == _playerIdIdx && transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
             {               
                 _canMove = true;
                 Debug.Log($"{gameObject.name} Can Move = True");

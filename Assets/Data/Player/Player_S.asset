@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerMaterial: {fileID: 2100000, guid: 5b45e81b83975874794ed42acc796412, type: 2}
   PlayerIdentifier: 1
+  XMovement: -1

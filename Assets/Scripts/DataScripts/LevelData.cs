@@ -8,5 +8,6 @@ namespace BlockyRoad
         public int LevelIdx;
         public GameObject LevelPrefab;
         public Vector3[] PlayersStartPos;
+        public float[] MaxXValues;
     }
 }
