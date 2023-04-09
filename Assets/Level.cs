@@ -6,7 +6,7 @@ namespace BlockyRoad
     {
         public enum Sides { North, South };
 
-        public Sides ActiveSide = Sides.North;
+        public Sides ActiveSide = Sides.North;       
 
         void Update()
         {

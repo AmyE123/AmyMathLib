@@ -18,6 +18,10 @@ namespace BlockyRoad
 
         private bool _canMove;
 
+        private bool _completedSide = false;
+
+        public bool HasCompletedSide => _completedSide;
+
         void Start()
         {
             Initialization();            
@@ -59,6 +63,7 @@ namespace BlockyRoad
 
         void Update()
         {
+            // TODO: Cleanup
             if ((int)_manager.CurrentLevel.ActiveSide == _playerIdIdx && transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
             {               
                 _canMove = true;
@@ -66,8 +71,14 @@ namespace BlockyRoad
             }
             else
             {
-                _canMove = false;
+                _canMove = false;                
                 Debug.Log($"{gameObject.name} Can Move = False");
+            }
+
+            // TODO: Cleanup
+            if (transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
+            {
+                _completedSide = true;
             }
 
             if (_manager.CurrentLevelGameObject != null && !_parentSet)
