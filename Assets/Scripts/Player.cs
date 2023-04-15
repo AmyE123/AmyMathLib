@@ -24,13 +24,13 @@ namespace BlockyRoad
 
         void Start()
         {
-            Initialization();            
+            Initialization();
         }
 
         void Initialization()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
-            _playerIdIdx = (int)_playerData.PlayerIdentifier;           
+            _playerIdIdx = (int)_playerData.PlayerIdentifier;
             SetPlayerMaterial();
             SetPlayerLevelPosition();
         }
@@ -42,7 +42,7 @@ namespace BlockyRoad
 
         void SetPlayerLevelPosition()
         {
-            transform.position = _manager.CurrentLevelData.PlayersStartPos[_playerIdIdx];           
+            transform.position = _manager.CurrentLevelData.PlayersStartPos[_playerIdIdx];
         }
 
         void SetPlayerLevelParent()
@@ -65,14 +65,12 @@ namespace BlockyRoad
         {
             // TODO: Cleanup
             if ((int)_manager.CurrentLevel.ActiveSide == _playerIdIdx && transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
-            {               
+            {
                 _canMove = true;
-                Debug.Log($"{gameObject.name} Can Move = True");
             }
             else
             {
-                _canMove = false;                
-                Debug.Log($"{gameObject.name} Can Move = False");
+                _canMove = false;
             }
 
             // TODO: Cleanup

@@ -14,14 +14,14 @@ namespace BlockyRoad
             {
                 if (ActiveSide == Sides.North) 
                 {
-                    Debug.Log("Turning North -> South");
+                    Debug.Log("[LEVEL] Turning North -> South");
                     ActiveSide = Sides.South;
 
                     transform.Rotate(180, 0, 0);
                 }
                 else 
                 {
-                    Debug.Log("Turning South -> North");
+                    Debug.Log("[LEVEL] Turning South -> North");
                     ActiveSide = Sides.North;
 
                     transform.Rotate(-180, 0, 0);

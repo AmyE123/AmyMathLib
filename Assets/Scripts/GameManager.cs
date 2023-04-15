@@ -37,7 +37,7 @@ namespace BlockyRoad
                 }
             }
 
-            Debug.Log("AE: Level complete!");
+            Debug.Log("[LEVEL] Level complete!");
             return true;
         }
     }
