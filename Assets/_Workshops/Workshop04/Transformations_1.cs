@@ -178,7 +178,7 @@ public class Transformations_1 : MonoBehaviour
         #region LERP TASK      
         if (Input.GetKeyDown(KeyCode.L))
         {
-            _canLerp = !_canLerp;         
+            _canLerp = !_canLerp;
         }
 
         if (_canLerp)
@@ -199,5 +199,5 @@ public class Transformations_1 : MonoBehaviour
 
         _gameObject.transform.position = lerp.ToUnityVector3();
     }
-#endregion //LERP TASK
+    #endregion //LERP TASK
 }

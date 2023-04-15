@@ -63,10 +63,10 @@ namespace AmyMathLib.Matrix
             values[2, 3] = column4.z;
             values[3, 3] = 1;
         }
-        
+
         public static AMatrix4x4 Identity
         {
-            get 
+            get
             {
                 return new AMatrix4x4(
                     new AVector4(1, 0, 0, 0),
@@ -79,7 +79,7 @@ namespace AmyMathLib.Matrix
         public static AMatrix4x4 operator *(AMatrix4x4 a, AMatrix4x4 b)
         {
             // new AMatrix4x4
-            AMatrix4x4 rv = new AMatrix4x4(new AVector4(0,0,0,0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0));
+            AMatrix4x4 rv = new AMatrix4x4(new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0), new AVector4(0, 0, 0, 0));
 
             //row of a
             for (int i = 0; i < 3; i++)

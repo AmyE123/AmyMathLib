@@ -6,20 +6,20 @@ namespace BlockyRoad
     {
         public enum Sides { North, South };
 
-        public Sides ActiveSide = Sides.North;       
+        public Sides ActiveSide = Sides.North;
 
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (ActiveSide == Sides.North) 
+                if (ActiveSide == Sides.North)
                 {
                     Debug.Log("[LEVEL] Turning North -> South");
                     ActiveSide = Sides.South;
 
                     transform.Rotate(180, 0, 0);
                 }
-                else 
+                else
                 {
                     Debug.Log("[LEVEL] Turning South -> North");
                     ActiveSide = Sides.North;

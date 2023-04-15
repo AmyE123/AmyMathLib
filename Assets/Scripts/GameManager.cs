@@ -19,7 +19,7 @@ namespace BlockyRoad
 
         private void Start()
         {
-            InstantiateLevel();           
+            InstantiateLevel();
         }
 
         private void Update()

@@ -63,8 +63,21 @@ namespace BlockyRoad
 
         void Update()
         {
-            // TODO: Cleanup
-            if ((int)_manager.CurrentLevel.ActiveSide == _playerIdIdx && transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
+            if (_manager.CurrentLevelGameObject != null && !_parentSet)
+            {
+                SetPlayerLevelParent();
+            }
+
+            MovementChecks();
+            PlayerMovement();
+        }
+
+        void MovementChecks()
+        {
+            bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
+            bool isPlayerAtEnd = transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
+
+            if (islevelOnPlayerSide && isPlayerAtEnd)
             {
                 _canMove = true;
             }
@@ -73,18 +86,10 @@ namespace BlockyRoad
                 _canMove = false;
             }
 
-            // TODO: Cleanup
-            if (transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx])
+            if (isPlayerAtEnd)
             {
                 _completedSide = true;
             }
-
-            if (_manager.CurrentLevelGameObject != null && !_parentSet)
-            {
-                SetPlayerLevelParent();
-            }
-
-            PlayerMovement();
         }
     }
 }
