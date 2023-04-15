@@ -1,5 +1,7 @@
 namespace BlockyRoad
 {
+    using AmyMathLib.Maths;
+    using AmyMathLib.Vector;
     using UnityEngine;
 
     public class Player : MonoBehaviour
@@ -57,7 +59,14 @@ namespace BlockyRoad
 
             if (Input.GetMouseButtonDown(1) && _canMove)
             {
-                transform.position = new Vector3(transform.position.x + xMov, transform.position.y, transform.position.z);
+                // -- Old implementation --
+                //transform.position = new Vector3(transform.position.x + xMov, transform.position.y, transform.position.z);
+
+                // -- New implementation --
+                // Using AVector3 for the new positions, as well as ToUnityVector to apply these.
+                AVector3 newPlayerPosition = new AVector3(transform.position.x + xMov, transform.position.y, transform.position.z);
+                transform.position = AMaths.ToUnityVector(newPlayerPosition);
+
             }
         }
 
@@ -75,9 +84,9 @@ namespace BlockyRoad
         void MovementChecks()
         {
             bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
-            bool isPlayerAtEnd = transform.position.x != _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
+            bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
 
-            if (islevelOnPlayerSide && isPlayerAtEnd)
+            if (islevelOnPlayerSide && !isPlayerAtEnd)
             {
                 _canMove = true;
             }
