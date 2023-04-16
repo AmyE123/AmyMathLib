@@ -418,12 +418,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1027188894}
     - target: {fileID: 5058581335262390225, guid: 2c7b7aab0b3c2df4dbb337d1496bb16f, type: 3}
-      propertyPath: _playerData
-      value: 
-      objectReference: {fileID: 11400000, guid: d80a57cde2d1de1418a7a56290ba56b1, type: 2}
-    - target: {fileID: 5058581335262390225, guid: 2c7b7aab0b3c2df4dbb337d1496bb16f, type: 3}
-      propertyPath: _playerIdentifier
-      value: 1
+      propertyPath: _lerpSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7220181600364427663, guid: 2c7b7aab0b3c2df4dbb337d1496bb16f, type: 3}
       propertyPath: m_Name
@@ -497,6 +493,10 @@ PrefabInstance:
       propertyPath: _manager
       value: 
       objectReference: {fileID: 1027188894}
+    - target: {fileID: 5058581335262390225, guid: 2c7b7aab0b3c2df4dbb337d1496bb16f, type: 3}
+      propertyPath: _lerpSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5058581335262390225, guid: 2c7b7aab0b3c2df4dbb337d1496bb16f, type: 3}
       propertyPath: _playerData
       value: 

@@ -1,16 +1,36 @@
 namespace BlockyRoad
 {
     using AmyMathLib.Maths;
+    using AmyMathLib.Matrix;
     using AmyMathLib.Vector;
     using UnityEngine;
 
     public class Player : MonoBehaviour
     {
-        [SerializeField]
-        private GameManager _manager;
+        #region AML_Lerp_Demo
+        [Header("Lerping")]
+        private const float LERP_COOLDOWN = 0.5f;
 
         [SerializeField]
-        private PlayerData _playerData;
+        private float _lerpSpeed = 10;
+
+        [SerializeField]
+        private float _lerpCooldown = LERP_COOLDOWN;
+
+        [SerializeField]
+        private bool _hasCooledDown = true;
+
+        [SerializeField]
+        private bool _hasMoved = false;
+
+        private bool _canLerp;
+
+        private AVector3 newPlayerPosition = AMaths.ToAVector(Vector3.zero);
+        #endregion //AML_Lerp_Demo
+
+        [Header("Player")]
+        [SerializeField]
+        private GameManager _manager;
 
         private MeshRenderer _meshRenderer;
 
@@ -18,9 +38,12 @@ namespace BlockyRoad
 
         private bool _parentSet = false;
 
-        private bool _canMove;
-
         private bool _completedSide = false;
+
+        [SerializeField]
+        protected PlayerData _playerData;
+
+        protected bool _playerCanTakeTurn;
 
         public bool HasCompletedSide => _completedSide;
 
@@ -53,22 +76,78 @@ namespace BlockyRoad
             _parentSet = true;
         }
 
-        void PlayerMovement()
+        #region AML_Vector_Demo
+        void Movement()
         {
             int xMov = _playerData.XMovement;
 
-            if (Input.GetMouseButtonDown(1) && _canMove)
+            if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown)
             {
+                _canLerp = true;
+                _hasMoved = true;
+                _lerpCooldown = LERP_COOLDOWN;
+
                 // -- Old implementation --
                 //transform.position = new Vector3(transform.position.x + xMov, transform.position.y, transform.position.z);
 
                 // -- New implementation --
                 // Using AVector3 for the new positions, as well as ToUnityVector to apply these.
-                AVector3 newPlayerPosition = new AVector3(transform.position.x + xMov, transform.position.y, transform.position.z);
-                transform.position = AMaths.ToUnityVector(newPlayerPosition);
+                newPlayerPosition = new AVector3(transform.position.x + xMov, transform.position.y, transform.position.z);
 
+                // I want to implement lerping which is why this is commented out
+                //transform.position = AMaths.ToUnityVector(newPlayerPosition);
+            }
+
+            if (_canLerp)
+            {
+                Lerp(gameObject, newPlayerPosition);
+
+                if (_hasMoved)
+                {
+                    _lerpCooldown -= Time.deltaTime;
+                }
+                
+                if (_lerpCooldown <= 0)
+                {
+                    _hasCooledDown = true;
+                    _hasMoved = false;
+                    
+                    _lerpCooldown = 0;
+                }
+                else
+                {
+                    _hasCooledDown = false;
+                    _hasMoved = true;
+                }
             }
         }
+        #endregion //AML_Vector_Demo
+
+        #region AML_Lerp_Demo
+        //void LerpMovement()
+        //{
+        //    if (Input.GetMouseButtonDown(1) && _canMove)
+        //    {
+        //        _canLerp = !_canLerp;
+        //    }
+
+        //    //if (_canLerp)
+        //    //{
+        //    //    Lerp(gameObject, AMaths.ToAVector(_pointB.position));
+        //    //}
+        //    //if (!_canLerp)
+        //    //{
+        //    //    Lerp(gameObject, AMaths.ToAVector(_pointA.position));
+        //    //}
+        //}
+
+        void Lerp(GameObject player, AVector3 target)
+        {
+            var lerp = AMaths.Lerp(AMaths.ToAVector(player.transform.position), target, Time.deltaTime * _lerpSpeed);
+
+            player.transform.position = lerp.ToUnityVector3();
+        }
+        #endregion //AML_Demo
 
         void Update()
         {
@@ -78,7 +157,7 @@ namespace BlockyRoad
             }
 
             MovementChecks();
-            PlayerMovement();
+            Movement();
         }
 
         void MovementChecks()
@@ -88,11 +167,11 @@ namespace BlockyRoad
 
             if (islevelOnPlayerSide && !isPlayerAtEnd)
             {
-                _canMove = true;
+                _playerCanTakeTurn = true;
             }
             else
             {
-                _canMove = false;
+                _playerCanTakeTurn = false;
             }
 
             if (isPlayerAtEnd)

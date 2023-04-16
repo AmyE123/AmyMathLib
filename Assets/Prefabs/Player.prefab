@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7220181600364427663}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -96,3 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4afe5a90d23f94d8a2de9bf3bb4885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lerpSpeed: 2
+  _pointA: {fileID: 0}
+  _pointB: {fileID: 0}
+  _canLerp: 0
+  _manager: {fileID: 0}
+  _playerData: {fileID: 11400000, guid: d80a57cde2d1de1418a7a56290ba56b1, type: 2}
