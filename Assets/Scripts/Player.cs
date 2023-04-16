@@ -7,7 +7,7 @@ namespace BlockyRoad
 
     public class Player : MonoBehaviour
     {
-        #region AML_Lerp_Demo
+        #region AML_Demo
         [Header("Lerping")]
         private const float LERP_COOLDOWN = 0.5f;
 
@@ -26,7 +26,7 @@ namespace BlockyRoad
         private bool _canLerp;
 
         private AVector3 newPlayerPosition = AMaths.ToAVector(Vector3.zero);
-        #endregion //AML_Lerp_Demo
+        #endregion //AML_Demo
 
         [Header("Player")]
         [SerializeField]
@@ -39,6 +39,8 @@ namespace BlockyRoad
         private bool _parentSet = false;
 
         private bool _completedSide = false;
+
+        private bool _isPlayerAtEnd = false;
 
         [SerializeField]
         protected PlayerData _playerData;
@@ -76,7 +78,7 @@ namespace BlockyRoad
             _parentSet = true;
         }
 
-        #region AML_Vector_Demo
+        #region AML_Demo
         void Movement()
         {
             int xMov = _playerData.XMovement;
@@ -100,6 +102,7 @@ namespace BlockyRoad
 
             if (_canLerp)
             {
+                // Implementing lerp into movement
                 Lerp(gameObject, newPlayerPosition);
 
                 if (_hasMoved)
@@ -121,26 +124,8 @@ namespace BlockyRoad
                 }
             }
         }
-        #endregion //AML_Vector_Demo
 
-        #region AML_Lerp_Demo
-        //void LerpMovement()
-        //{
-        //    if (Input.GetMouseButtonDown(1) && _canMove)
-        //    {
-        //        _canLerp = !_canLerp;
-        //    }
-
-        //    //if (_canLerp)
-        //    //{
-        //    //    Lerp(gameObject, AMaths.ToAVector(_pointB.position));
-        //    //}
-        //    //if (!_canLerp)
-        //    //{
-        //    //    Lerp(gameObject, AMaths.ToAVector(_pointA.position));
-        //    //}
-        //}
-
+        // Lerp functionality
         void Lerp(GameObject player, AVector3 target)
         {
             var lerp = AMaths.Lerp(AMaths.ToAVector(player.transform.position), target, Time.deltaTime * _lerpSpeed);
@@ -163,9 +148,17 @@ namespace BlockyRoad
         void MovementChecks()
         {
             bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
-            bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
+            //bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
 
-            if (islevelOnPlayerSide && !isPlayerAtEnd)
+            bool isAtMinRangeX = transform.position.x > _manager.CurrentLevelData.MaxXValues[_playerIdIdx] - 0.5f;
+            bool isAtMaxRangeX = transform.position.x < _manager.CurrentLevelData.MaxXValues[_playerIdIdx] + 0.5f;
+
+            if (isAtMinRangeX & isAtMaxRangeX)
+            {
+                _isPlayerAtEnd = true;
+            }
+
+            if (islevelOnPlayerSide && !_isPlayerAtEnd)
             {
                 _playerCanTakeTurn = true;
             }
@@ -174,7 +167,7 @@ namespace BlockyRoad
                 _playerCanTakeTurn = false;
             }
 
-            if (isPlayerAtEnd)
+            if (_isPlayerAtEnd)
             {
                 _completedSide = true;
             }
