@@ -151,5 +151,14 @@ namespace AmyMathLib.Maths
         {
             return a * (1.0f - t) + b * t;
         }
+
+        public static AVector3 RotateVertexAroundAxis(float angle, AVector3 axis, AVector3 vertex)
+        {
+            AVector3 rv = (vertex * Mathf.Cos(angle)) +
+                GetDotProduct(vertex, axis) * axis * (1.0f - Mathf.Cos(angle)) +
+                VectorCrossProduct(axis, vertex) * Mathf.Sin(angle);
+
+            return rv;
+        }
     }
 }

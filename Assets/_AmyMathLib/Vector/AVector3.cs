@@ -24,9 +24,19 @@ namespace AmyMathLib.Vector
             return SubtractVector3(a, b);
         }
 
+        public static AVector3 operator -(AVector3 a)
+        {
+            return new AVector3(-a.x, -a.y, -a.z);
+        }
+
         public static AVector3 operator *(AVector3 a, float b)
         {
             return ScaleVector(a, b);
+        }
+
+        public static AVector3 operator *(float a, AVector3 b)
+        {
+            return ScaleVector(b, a);
         }
 
         public static AVector3 operator /(AVector3 a, float b)
