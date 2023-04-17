@@ -26,6 +26,8 @@ namespace BlockyRoad
         private bool _canLerp;
 
         private AVector3 newPlayerPosition = AMaths.ToAVector(Vector3.zero);
+
+        public bool HasCooledDown => _hasCooledDown;
         #endregion //AML_Demo
 
         [Header("Player")]
@@ -116,6 +118,9 @@ namespace BlockyRoad
                     _hasMoved = false;
                     
                     _lerpCooldown = 0;
+
+                    _canLerp = false;
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 }
                 else
                 {

@@ -4,13 +4,21 @@ namespace BlockyRoad
 
     public class Level : MonoBehaviour
     {
+        [SerializeField]
+        private GameManager _manager;
+
         public enum Sides { North, South };
 
         public Sides ActiveSide = Sides.North;
 
+        private void Start()
+        {
+            _manager = FindObjectOfType<GameManager>();
+        }
+
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && _manager.PlayersCooledDown())
             {
                 if (ActiveSide == Sides.North)
                 {

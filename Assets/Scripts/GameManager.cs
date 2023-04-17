@@ -1,6 +1,5 @@
 namespace BlockyRoad
 {
-    using System.Linq;
     using UnityEngine;
 
     public class GameManager : MonoBehaviour
@@ -25,9 +24,22 @@ namespace BlockyRoad
         private void Update()
         {
             IsLevelComplete();
+            PlayersCooledDown();
         }
 
-        private bool IsLevelComplete()
+        public bool PlayersCooledDown()
+        {
+            for (int i = 0; i < _players.Length; i++)
+            {
+                if (_players[i].HasCooledDown == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsLevelComplete()
         {
             for (int i = 0; i < _players.Length; i++)
             {
