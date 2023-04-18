@@ -39,12 +39,75 @@
             return new AVector3(v.x, v.y, v.z);
         }
 
+        public AVector4 GetAxisAngle()
+        {
+            AVector4 rv = new AVector4(0, 0, 0, 0);
+
+            // Inverse cosine to get our half angle back
+            float halfAngle = Mathf.Acos(w);
+            rv.w = halfAngle * 2;
+
+            // Simple calculations to get our normal axis back using the half-angle
+            rv.x = v.x / Mathf.Sin(halfAngle);
+            rv.y = v.y / Mathf.Sin(halfAngle);
+            rv.z = v.z / Mathf.Sin(halfAngle);
+
+            return rv;
+        }
+
         public AQuaternion Inverse()
         {
             AQuaternion rv = new AQuaternion();
             rv.w = w;
 
             rv.SetAxis(-GetAxis());
+
+            return rv;
+        }
+
+        public static AQuaternion Slerp(AQuaternion q, AQuaternion r, float t)
+        {
+            t = Mathf.Clamp(t, 0.0f, 1.0f);
+            
+            AQuaternion d = r * q.Inverse();
+            AVector4 AxisAngle = d.GetAxisAngle();
+            AQuaternion dT = new AQuaternion(AxisAngle.w * t, new AVector3(AxisAngle.x, AxisAngle.y, AxisAngle.z));
+
+            return dT * q;
+        }
+
+        public static AQuaternion ToAQuaternion(Quaternion a)
+        {
+            AQuaternion rv = new AQuaternion();
+
+            rv.w = a.w;
+            rv.v.x = a.x;
+            rv.v.y = a.y;
+            rv.v.z = a.z;
+
+            return rv;
+        }
+
+        public static Quaternion ToUnityQuaternion(AQuaternion a)
+        {
+            Quaternion rv = new Quaternion();
+
+            rv.w = a.w;
+            rv.x = a.v.x;
+            rv.y = a.v.y;
+            rv.z = a.v.z;
+
+            return rv;
+        }
+
+        public static Quaternion ToUnityQuaternion(AVector3 a)
+        {
+            Quaternion rv = new Quaternion();
+
+            rv.w = 0.0f;
+            rv.x = a.x;
+            rv.y = a.y;
+            rv.z = a.z;
 
             return rv;
         }

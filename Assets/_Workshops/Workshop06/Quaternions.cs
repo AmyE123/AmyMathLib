@@ -6,10 +6,18 @@ using UnityEngine;
 public class Quaternions : MonoBehaviour
 {
     public float angle;
+    public float t;
+    public float speed = 0.5f;
 
-
-    // Update is called once per frame
     void Update()
+    {
+        //QuaternionDemo();
+
+        SlerpDemo();
+
+    }
+
+    void QuaternionDemo()
     {
         angle += Time.deltaTime;
 
@@ -30,5 +38,32 @@ public class Quaternions : MonoBehaviour
 
         // Set the position so we can see if it's working
         transform.position = AMaths.ToUnityVector(newP);
+    }
+
+    void SlerpDemo()
+    {
+        t += Time.deltaTime * speed;
+
+        // Defining two rotations
+        AQuaternion q = new AQuaternion(Mathf.PI * 0.5f, new AVector3(0, 1, 0));
+        AQuaternion r = new AQuaternion(Mathf.PI * 0.25f, new AVector3(1, 0, 0));
+
+        // This is the slerped value
+        AQuaternion slerped = AQuaternion.Slerp(q, r, t);
+
+        // Define a vector which we will rotate
+        AVector3 p = new AVector3(1, 2, 3);
+
+        // Store that vector in a quaternion (We're using an overloaded constructor here to store the raw position)
+        AQuaternion k = new AQuaternion(p);
+
+        // The variable newK will have our new position inside of it
+        AQuaternion newK = slerped * k * slerped.Inverse();
+
+        // Get the position as a vector
+        AVector3 newP = newK.GetAxis();
+
+        // Set the position so we can see if it's working
+        transform.rotation = AQuaternion.ToUnityQuaternion(newP);
     }
 }
