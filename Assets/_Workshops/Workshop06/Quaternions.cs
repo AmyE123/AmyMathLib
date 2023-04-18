@@ -14,7 +14,6 @@ public class Quaternions : MonoBehaviour
         //QuaternionDemo();
 
         SlerpDemo();
-
     }
 
     void QuaternionDemo()

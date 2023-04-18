@@ -83,7 +83,8 @@ namespace BlockyRoad
         #region AML_Demo
         void Movement()
         {
-            int xMov = _playerData.XMovement;
+            //int xMov = _playerData.XMovement;
+            int xMov = 1;
 
             if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown)
             {
@@ -120,7 +121,7 @@ namespace BlockyRoad
                     _lerpCooldown = 0;
 
                     _canLerp = false;
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
                 }
                 else
                 {
@@ -155,8 +156,8 @@ namespace BlockyRoad
             bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
             //bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
 
-            bool isAtMinRangeX = transform.position.x > _manager.CurrentLevelData.MaxXValues[_playerIdIdx] - 0.5f;
-            bool isAtMaxRangeX = transform.position.x < _manager.CurrentLevelData.MaxXValues[_playerIdIdx] + 0.5f;
+            bool isAtMinRangeX = transform.localPosition.x > _manager.CurrentLevelData.MaxXValues[_playerIdIdx] - 0.5f;
+            bool isAtMaxRangeX = transform.localPosition.x < _manager.CurrentLevelData.MaxXValues[_playerIdIdx] + 0.5f;
 
             if (isAtMinRangeX & isAtMaxRangeX)
             {
