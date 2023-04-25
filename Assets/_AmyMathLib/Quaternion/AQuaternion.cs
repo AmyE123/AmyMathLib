@@ -1,6 +1,7 @@
 ﻿namespace AmyMathLib.Quaternion
 {
     using AmyMathLib.Vector;
+    using Unity.VisualScripting.FullSerializer;
     using UnityEngine;
 
     public class AQuaternion
@@ -27,6 +28,12 @@
             v = new AVector3(position.x, position.y, position.z);
         }
 
+        public AQuaternion(float w, float x, float y, float z)
+        {
+            this.w = w;
+            v = new AVector3(x, y, z);
+        }
+
         public void SetAxis(AVector3 vector)
         {
             v.x = vector.x;
@@ -34,9 +41,19 @@
             v.z = vector.z;
         }
 
+        //public AVector3 GetAxis()
+        //{
+        //    return new AVector3(v.x, v.y, v.z);
+        //}
+
         public AVector3 GetAxis()
         {
-            return new AVector3(v.x, v.y, v.z);
+            return v / Mathf.Sin(GetAngle() / 2);
+        }
+
+        public float GetAngle()
+        {
+            return GetAxisAngle().w;
         }
 
         public AVector4 GetAxisAngle()
@@ -55,25 +72,38 @@
             return rv;
         }
 
+        //public AQuaternion Inverse()
+        //{
+        //    AQuaternion rv = new AQuaternion();
+        //    rv.w = w;
+
+        //    rv.SetAxis(-GetAxis());
+
+        //    return rv;
+        //}
+
         public AQuaternion Inverse()
         {
-            AQuaternion rv = new AQuaternion();
-            rv.w = w;
-
-            rv.SetAxis(-GetAxis());
-
-            return rv;
+            return new(w, -v.x, -v.y, -v.z);
         }
+
+        //public static AQuaternion Slerp(AQuaternion q, AQuaternion r, float t)
+        //{
+        //    t = Mathf.Clamp(t, 0.0f, 1.0f);
+            
+        //    AQuaternion d = r * q.Inverse();
+        //    AVector4 AxisAngle = d.GetAxisAngle();
+        //    AQuaternion dT = new AQuaternion(AxisAngle.w * t, new AVector3(AxisAngle.x, AxisAngle.y, AxisAngle.z));
+
+        //    return dT * q;
+        //}
 
         public static AQuaternion Slerp(AQuaternion q, AQuaternion r, float t)
         {
-            t = Mathf.Clamp(t, 0.0f, 1.0f);
-            
             AQuaternion d = r * q.Inverse();
-            AVector4 AxisAngle = d.GetAxisAngle();
-            AQuaternion dT = new AQuaternion(AxisAngle.w * t, new AVector3(AxisAngle.x, AxisAngle.y, AxisAngle.z));
-
-            return dT * q;
+            d = new(t * d.GetAxisAngle().w, d.GetAxis());
+            Debug.Log($"{d.w}, {d.v.x}, {d.v.y}, {d.v.z}");
+            return d * q;
         }
 
         public static AQuaternion ToAQuaternion(Quaternion a)
@@ -119,7 +149,8 @@
             var y = a.w * b.v.y - a.v.x * b.v.z + a.v.y * b.w + a.v.z * b.v.x;
             var z = a.w * b.v.z + a.v.x * b.v.y - a.v.y * b.v.x + a.v.z * b.w;
 
-            AQuaternion rv = new AQuaternion(new AVector3(x, y, z));
+            //AQuaternion rv = new AQuaternion(new AVector3(x, y, z));
+            AQuaternion rv = new(w, x, y, z);
 
             return rv;
         }
