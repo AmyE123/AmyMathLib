@@ -83,7 +83,6 @@ namespace BlockyRoad
         #region AML_Demo
         void Movement()
         {
-            //int xMov = _playerData.XMovement;
             int xMov = 1;
 
             if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown)
