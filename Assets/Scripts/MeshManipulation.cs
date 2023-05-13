@@ -19,7 +19,7 @@ namespace BlockyRoad
         Vector3[] ModelSpaceVertices;
 
         private bool _canLerp;
-        private bool _stopScaling;
+        public bool StopScaling;
 
         [SerializeField]
         private float _timer;
@@ -29,12 +29,21 @@ namespace BlockyRoad
 
         private void Start()
         {
+            _gameObject = gameObject;
+
             go_X = _gameObject.transform.localScale.x;
             go_Y = _gameObject.transform.localScale.y;
             go_Z = _gameObject.transform.localScale.z;
 
             // The time it takes for the scalar lerp to be complete
             _timer = LERP_SPEED / 3;
+        }
+
+        public float GetMeshTimerValue(float lerpSpeed)
+        {
+            // A estimated value for the time
+            // it takes for the scalar lerp to be complete
+            return lerpSpeed / 3;
         }
 
         private bool InitializeMesh(GameObject gameObject)
@@ -71,20 +80,20 @@ namespace BlockyRoad
 
             if (_canLerp)
             {
-                ScaleObject(_gameObject, 0.1f, 0.1f, 0.1f, LERP_SPEED);
+                ScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
                 
                 _timer -= Time.deltaTime;
                 if (_timer <= 0)
                 {
-                    _stopScaling = true;
+                    StopScaling = true;
                     _canLerp= false;
                 }
             }
         }
 
-        public bool ScaleObject(GameObject gameObject, float scaleX, float scaleY, float scaleZ, float speed)
+        public bool ScaleObject(float scaleX, float scaleY, float scaleZ, float speed)
         {
-            if (InitializeMesh(_gameObject) && !_stopScaling)
+            if (InitializeMesh(_gameObject) && !StopScaling)
             {
                 //Initialize lerping values
                 var newSpeed = speed * 10;
@@ -107,7 +116,7 @@ namespace BlockyRoad
                 }
 
                 //Mesh filter is a component that stores info about the current mesh
-                MeshFilter MF_scale = gameObject.GetComponent<MeshFilter>();
+                MeshFilter MF_scale = _gameObject.GetComponent<MeshFilter>();
 
                 //Assign our new verticies
                 MF_scale.mesh.vertices = TransformedVerticiesScale;
@@ -118,7 +127,7 @@ namespace BlockyRoad
 
                 return true;
             }
-            else if (_stopScaling)
+            else if (StopScaling)
             {
                 Debug.Log("[LOG]: Lerp scale completed");
                 return false;

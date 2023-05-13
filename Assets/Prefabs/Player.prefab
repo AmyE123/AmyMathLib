@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 258330463370576844}
   - component: {fileID: 3845755696523249174}
   - component: {fileID: 5058581335262390225}
+  - component: {fileID: 3448224581662417879}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -97,8 +98,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lerpSpeed: 2
-  _pointA: {fileID: 0}
-  _pointB: {fileID: 0}
-  _canLerp: 0
+  _lerpCooldown: 0.5
+  _meshManipulation: {fileID: 0}
+  _meshScaleDelay: 0.2
+  _meshScaleSpeed: 200
   _manager: {fileID: 0}
   _playerData: {fileID: 11400000, guid: d80a57cde2d1de1418a7a56290ba56b1, type: 2}
+--- !u!114 &3448224581662417879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220181600364427663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a3da1fadb3e3c4eacf9384131c9c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _scaleX: 0.1
+  _scaleY: 0.1
+  _scaleZ: 0.1
+  StopScaling: 0
+  _timer: 0

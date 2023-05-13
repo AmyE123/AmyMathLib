@@ -25,6 +25,14 @@ namespace BlockyRoad
         private AVector3 newPlayerPosition = AMaths.ToAVector(Vector3.zero);
 
         public bool HasCooledDown => _hasCooledDown;
+
+        [Header("Mesh Manipulation")]
+        [SerializeField]
+        private MeshManipulation _meshManipulation;
+
+        private float _meshScaleTimer;
+        private float _meshScaleDelay;
+        private float _meshScaleSpeed;
         #endregion //AML_Demo
 
         [Header("Player")]
@@ -54,6 +62,8 @@ namespace BlockyRoad
         {
             _meshRenderer = GetComponent<MeshRenderer>();
             _playerIdIdx = (int)_playerData.PlayerIdentifier;
+            _meshManipulation = GetComponent<MeshManipulation>();
+            _meshScaleTimer = _meshManipulation.GetMeshTimerValue(_meshScaleSpeed);
             SetPlayerMaterial();
             SetPlayerLevelPosition();
         }
@@ -169,6 +179,25 @@ namespace BlockyRoad
             if (_isPlayerAtEnd)
             {
                 _completedSide = true;
+
+                _meshScaleDelay -= Time.deltaTime;
+                if (_meshScaleDelay <= 0)
+                {
+                    _meshScaleDelay = 0;
+
+                    _meshManipulation.ScaleObject(0.1f, 0.1f, 0.1f, _meshScaleSpeed);
+
+                    _meshScaleTimer -= Time.deltaTime;
+                    if (_meshScaleTimer <= 0)
+                    {
+                        _meshScaleTimer = 0;
+
+                        _canLerp = false;
+                        _meshManipulation.StopScaling = true;
+                    }
+                }
+
+               
             }
         }
     }
