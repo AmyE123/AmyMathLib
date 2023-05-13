@@ -152,6 +152,11 @@ namespace AmyMathLib.Maths
             return a * (1.0f - t) + b * t;
         }
 
+        public static float Lerp(float a, float b, float t)
+        {
+            return a * (1.0f - t) + b * t;
+        }
+
         public static AVector3 RotateVertexAroundAxis(float angle, AVector3 axis, AVector3 vertex)
         {
             AVector3 rv = (vertex * Mathf.Cos(angle)) +
