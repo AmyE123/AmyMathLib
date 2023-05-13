@@ -17,12 +17,9 @@ namespace BlockyRoad
         [SerializeField]
         private float _lerpCooldown = LERP_COOLDOWN;
 
-        [SerializeField]
+
         private bool _hasCooledDown = true;
-
-        [SerializeField]
         private bool _hasMoved = false;
-
         private bool _canLerp;
 
         private AVector3 newPlayerPosition = AMaths.ToAVector(Vector3.zero);
@@ -37,11 +34,8 @@ namespace BlockyRoad
         private MeshRenderer _meshRenderer;
 
         private int _playerIdIdx;
-
         private bool _parentSet = false;
-
         private bool _completedSide = false;
-
         private bool _isPlayerAtEnd = false;
 
         [SerializeField]
