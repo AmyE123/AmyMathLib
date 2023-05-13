@@ -31,7 +31,11 @@ namespace BlockyRoad
         private MeshManipulation _meshManipulation;
 
         private float _meshScaleTimer;
+
+        [SerializeField]
         private float _meshScaleDelay;
+
+        [SerializeField]
         private float _meshScaleSpeed;
         #endregion //AML_Demo
 
