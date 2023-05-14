@@ -73,22 +73,26 @@ namespace BlockyRoad
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                _canLerp = true;                               
-            }
+            //if (Input.GetKeyDown(KeyCode.Tab))
+            //{
+            //    _canLerp = true;                               
+            //}
 
-            if (_canLerp)
-            {
-                LerpScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
+            //if (_canLerp)
+            //{
+            //    LerpScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
                 
-                _timer -= Time.deltaTime;
-                if (_timer <= 0)
-                {
-                    StopScaling = true;
-                    _canLerp= false;
-                }
-            }
+            //    _timer -= Time.deltaTime;
+            //    if (_timer <= 0)
+            //    {
+            //        _timer = 0;
+
+            //        StopScaling = true;
+            //        _canLerp= false;
+
+
+            //    }
+            //}
         }
 
         public bool LerpScaleObject(float scaleX, float scaleY, float scaleZ, float speed)

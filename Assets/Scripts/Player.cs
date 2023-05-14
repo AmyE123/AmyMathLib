@@ -91,14 +91,16 @@ namespace BlockyRoad
 
         public void ResetPlayerParams()
         {
+            transform.position = Vector3.zero;
             transform.SetParent(null);
-            _meshManipulation.ScaleObject(1f, 1f, 1f);
 
-            _parentSet = false;
-            _completedSide = false;
-            _isPlayerAtEnd = false;
+            //_meshManipulation.ScaleObject(1f, 1f, 1f);
 
-            SetPlayerLevelPosition();       
+            //_parentSet = false;
+            //_completedSide = false;
+            //_isPlayerAtEnd = false;
+
+            //SetPlayerLevelPosition();       
         }
 
         #region AML_Demo
@@ -214,6 +216,9 @@ namespace BlockyRoad
 
                         _canLerp = false;
                         _meshManipulation.StopScaling = true;
+
+                        transform.gameObject.SetActive(false);
+                        _meshManipulation.ScaleObject(1f, 1f, 1f);
                     }
                 }
 
