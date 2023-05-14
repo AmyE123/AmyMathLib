@@ -4,6 +4,8 @@ namespace BlockyRoad
 
     public class GameManager : MonoBehaviour
     {
+        public LevelData[] AllLevels;
+
         public Level CurrentLevel;
         public GameObject CurrentLevelGameObject;
         public LevelData CurrentLevelData;
@@ -23,7 +25,11 @@ namespace BlockyRoad
 
         private void Update()
         {
-            IsLevelComplete();
+            if (IsLevelComplete())
+            {
+                LoadNextLevel(AllLevels[1]);
+            }
+
             PlayersCooledDown();
         }
 
@@ -51,6 +57,21 @@ namespace BlockyRoad
 
             Debug.Log("[LEVEL] Level complete!");
             return true;
+        }
+
+        public void LoadNextLevel(LevelData nextLevelData)
+        {
+            for (int i = 0; i < _players.Length; i++)
+            {
+                _players[i].ResetPlayerParams();
+            }
+
+            CurrentLevelGameObject.SetActive(false);
+
+            CurrentLevelData = nextLevelData;
+
+            CurrentLevelGameObject = Instantiate(CurrentLevelData.LevelPrefab);
+            CurrentLevel = CurrentLevelGameObject.GetComponent<Level>();
         }
     }
 }

@@ -80,7 +80,7 @@ namespace BlockyRoad
 
             if (_canLerp)
             {
-                ScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
+                LerpScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
                 
                 _timer -= Time.deltaTime;
                 if (_timer <= 0)
@@ -91,7 +91,7 @@ namespace BlockyRoad
             }
         }
 
-        public bool ScaleObject(float scaleX, float scaleY, float scaleZ, float speed)
+        public bool LerpScaleObject(float scaleX, float scaleY, float scaleZ, float speed)
         {
             if (InitializeMesh(_gameObject) && !StopScaling)
             {
@@ -136,6 +136,35 @@ namespace BlockyRoad
             {
                 Debug.Log("[ERROR]: Mesh couldn't be initialized");
                 return false;
+            }
+        }
+
+        public void ScaleObject(float scaleX, float scaleY, float scaleZ)
+        {
+            if (InitializeMesh(_gameObject) && !StopScaling)
+            {
+                //Define a new array with the correct size
+                Vector3[] TransformedVerticiesScale = new Vector3[ModelSpaceVertices.Length];
+
+                //Create our scaling matrix (2x, y, z)
+                AMatrix4x4 scaleMatrix = new AMatrix4x4(new AVector3(1, 0, 0) * scaleX, new AVector3(0, 1, 0) * scaleY, new AVector3(0, 0, 1) * scaleZ, new AVector3(0, 0, 0));
+
+                //Transform each individual vertex
+                for (int i = 0; i < TransformedVerticiesScale.Length; i++)
+                {
+                    var AModelSpaceVetex = AMaths.ToAVector(ModelSpaceVertices[i]);
+                    TransformedVerticiesScale[i] = AMaths.ToUnityVector(scaleMatrix * AModelSpaceVetex);
+                }
+
+                //Mesh filter is a component that stores info about the current mesh
+                MeshFilter MF_scale = _gameObject.GetComponent<MeshFilter>();
+
+                //Assign our new verticies
+                MF_scale.mesh.vertices = TransformedVerticiesScale;
+
+                //These final steps are cometimes necessary to make the mesh look correct
+                MF_scale.mesh.RecalculateNormals();
+                MF_scale.mesh.RecalculateBounds();
             }
         }
 

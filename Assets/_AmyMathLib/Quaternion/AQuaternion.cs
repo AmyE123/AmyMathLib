@@ -100,7 +100,7 @@
             // -- Correct implementation --
             AQuaternion d = r * q.Inverse();
             d = new(t * d.GetAxisAngle().w, d.GetAxis());
-            Debug.Log($"{d.w}, {d.v.x}, {d.v.y}, {d.v.z}");
+            //Debug.Log($"{d.w}, {d.v.x}, {d.v.y}, {d.v.z}");
             return d * q;
         }
 

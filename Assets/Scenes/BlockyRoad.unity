@@ -356,6 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d4ee4121e5a244f9c44290444c47a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllLevels:
+  - {fileID: 11400000, guid: 11344e3b6c0a43a4c835459c41d49023, type: 2}
+  - {fileID: 11400000, guid: 969a53c53616a4146aab342c429ff820, type: 2}
   CurrentLevel: {fileID: 0}
   CurrentLevelGameObject: {fileID: 0}
   CurrentLevelData: {fileID: 11400000, guid: 11344e3b6c0a43a4c835459c41d49023, type: 2}

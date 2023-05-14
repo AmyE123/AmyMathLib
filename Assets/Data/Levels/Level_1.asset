@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ea39afc0cfdb34e9eed7984ea484bd, type: 3}
+  m_Name: Level_1
+  m_EditorClassIdentifier: 
+  LevelIdx: 1
+  LevelPrefab: {fileID: 3867857049029391786, guid: 4dce7127682b48c45bd18bde412e265a, type: 3}
+  PlayersStartPos:
+  - {x: -4.5, y: 0.5, z: 0}
+  - {x: 4.5, y: -1.5, z: 0}
+  MaxXValues:
+  - 4.5
+  - -4.5
+  LevelBlockers:
+  - {x: 0.5, y: 0.5}
+  LevelButtons:
+  - {x: 0.5, y: -1.5}
