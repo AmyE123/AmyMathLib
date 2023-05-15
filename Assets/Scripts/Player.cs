@@ -54,6 +54,7 @@ namespace BlockyRoad
         protected PlayerData _playerData;
 
         protected bool _playerCanTakeTurn;
+        private bool _playerPathBlocked = false;
 
         public bool HasCompletedSide => _completedSide;
 
@@ -93,7 +94,7 @@ namespace BlockyRoad
         {
             int xMov = 1;
 
-            if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown)
+            if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown && !_playerPathBlocked)
             {
                 _canLerp = true;
                 _hasMoved = true;
@@ -161,7 +162,9 @@ namespace BlockyRoad
         void MovementChecks()
         {
             bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
-            //bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
+
+            IsOnButton();
+            _playerPathBlocked = IsPathBlocked();
 
             bool isAtMinRangeX = transform.localPosition.x > _manager.CurrentLevelData.MaxXValues[_playerIdIdx] - 0.5f;
             bool isAtMaxRangeX = transform.localPosition.x < _manager.CurrentLevelData.MaxXValues[_playerIdIdx] + 0.5f;
@@ -169,7 +172,7 @@ namespace BlockyRoad
             if (isAtMinRangeX & isAtMaxRangeX)
             {
                 _isPlayerAtEnd = true;
-            }
+            }           
 
             if (islevelOnPlayerSide && !_isPlayerAtEnd)
             {
@@ -189,7 +192,7 @@ namespace BlockyRoad
                 {
                     _meshScaleDelay = 0;
 
-                    _meshManipulation.ScaleObject(0.1f, 0.1f, 0.1f, _meshScaleSpeed);
+                    _meshManipulation.LerpScaleObject(0.1f, 0.1f, 0.1f, _meshScaleSpeed);
 
                     _meshScaleTimer -= Time.deltaTime;
                     if (_meshScaleTimer <= 0)
@@ -198,11 +201,111 @@ namespace BlockyRoad
 
                         _canLerp = false;
                         _meshManipulation.StopScaling = true;
+
+                        transform.gameObject.SetActive(false);
+                        _meshManipulation.ScaleObject(1f, 1f, 1f);
                     }
                 }
 
                
             }
+        }
+
+        bool IsPathBlocked()
+        {
+            RaycastHit hit;
+            Vector3 _castDir;
+
+            if (_playerData.PlayerIdentifier == PlayerData.PlayerSide.North)
+            {
+                _castDir = Vector3.right;
+            }
+            else
+            {
+                _castDir = Vector3.left;
+            }
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(_castDir), out hit, Mathf.Infinity))
+            {              
+                Debug.DrawRay(transform.position, transform.TransformDirection(_castDir) * hit.distance, Color.yellow);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(_castDir) * 1000, Color.blue);
+                return false;
+            }
+
+            if (_playerData.PlayerIdentifier == PlayerData.PlayerSide.North)
+            {
+                if (hit.distance >= 1f)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (hit.distance <= 1f)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        bool IsOnButton()
+        {
+            RaycastHit hit;
+            Vector3 _castDir;
+
+            if (_playerData.PlayerIdentifier == PlayerData.PlayerSide.North)
+            {
+                _castDir = Vector3.down;
+            }
+            else
+            {
+                _castDir = Vector3.up;
+            }
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(_castDir), out hit, Mathf.Infinity))
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(_castDir) * hit.distance, Color.yellow);
+
+                if (hit.collider.gameObject.tag == "Button")
+                {
+                    GameObject go = hit.collider.gameObject;
+                    if (go != null)
+                    {
+                        //Transform btn = go.GetComponentInChildren<Transform>();
+                        //GameObject wall = btn.GetChild(0).gameObject;
+
+                        // Had an issue with shrinking it which I didn't have time to fix
+                        //wall.GetComponent<BlockingCube>().ShrinkWall();
+
+                        Destroy(go, 0.5f);
+
+                        Debug.Log("On Button");
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(_castDir) * 1000, Color.blue);
+                return false;
+            }
+
         }
     }
 }

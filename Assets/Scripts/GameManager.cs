@@ -1,14 +1,19 @@
 namespace BlockyRoad
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     public class GameManager : MonoBehaviour
     {
+        public LevelData[] AllLevels;
+
         public Level CurrentLevel;
         public GameObject CurrentLevelGameObject;
         public LevelData CurrentLevelData;
 
         public Player[] _players;
+
+        private float _levelReloadTimer = 2f;
 
         private void InstantiateLevel()
         {
@@ -19,12 +24,7 @@ namespace BlockyRoad
         private void Start()
         {
             InstantiateLevel();
-        }
-
-        private void Update()
-        {
-            IsLevelComplete();
-            PlayersCooledDown();
+            
         }
 
         public bool PlayersCooledDown()
@@ -50,6 +50,14 @@ namespace BlockyRoad
             }
 
             Debug.Log("[LEVEL] Level complete!");
+
+            _levelReloadTimer -= Time.deltaTime;
+
+            if (_levelReloadTimer <= 0)
+            {                
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);                
+            }
+            
             return true;
         }
     }
