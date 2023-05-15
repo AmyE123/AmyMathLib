@@ -7,22 +7,11 @@ namespace BlockyRoad
 
     public class MeshManipulation : MonoBehaviour
     {
-        const float LERP_SPEED = 20;
-
-        //TODO: Remove once implementation works
-        [SerializeField]
         private GameObject _gameObject;
-
-        [SerializeField]
-        private float _scaleX, _scaleY, _scaleZ;
 
         Vector3[] ModelSpaceVertices;
 
-        private bool _canLerp;
         public bool StopScaling;
-
-        [SerializeField]
-        private float _timer;
 
         private float X, Y, Z;
         private float go_X, go_Y, go_Z;
@@ -34,9 +23,6 @@ namespace BlockyRoad
             go_X = _gameObject.transform.localScale.x;
             go_Y = _gameObject.transform.localScale.y;
             go_Z = _gameObject.transform.localScale.z;
-
-            // The time it takes for the scalar lerp to be complete
-            _timer = LERP_SPEED / 3;
         }
 
         public float GetMeshTimerValue(float lerpSpeed)
@@ -69,30 +55,6 @@ namespace BlockyRoad
             go_Z = gameObject.transform.localScale.z;
 
             return true;
-        }
-
-        private void Update()
-        {
-            //if (Input.GetKeyDown(KeyCode.Tab))
-            //{
-            //    _canLerp = true;                               
-            //}
-
-            //if (_canLerp)
-            //{
-            //    LerpScaleObject(0.1f, 0.1f, 0.1f, LERP_SPEED);
-                
-            //    _timer -= Time.deltaTime;
-            //    if (_timer <= 0)
-            //    {
-            //        _timer = 0;
-
-            //        StopScaling = true;
-            //        _canLerp= false;
-
-
-            //    }
-            //}
         }
 
         public bool LerpScaleObject(float scaleX, float scaleY, float scaleZ, float speed)

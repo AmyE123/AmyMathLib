@@ -89,20 +89,6 @@ namespace BlockyRoad
             _parentSet = true;
         }
 
-        public void ResetPlayerParams()
-        {
-            transform.position = Vector3.zero;
-            transform.SetParent(null);
-
-            //_meshManipulation.ScaleObject(1f, 1f, 1f);
-
-            //_parentSet = false;
-            //_completedSide = false;
-            //_isPlayerAtEnd = false;
-
-            //SetPlayerLevelPosition();       
-        }
-
         #region AML_Demo
         void Movement()
         {
@@ -176,7 +162,6 @@ namespace BlockyRoad
         void MovementChecks()
         {
             bool islevelOnPlayerSide = (int)_manager.CurrentLevel.ActiveSide == _playerIdIdx;
-            //bool isPlayerAtEnd = transform.position.x == _manager.CurrentLevelData.MaxXValues[_playerIdIdx];
 
             IsOnButton();
             _playerPathBlocked = IsPathBlocked();
@@ -297,8 +282,13 @@ namespace BlockyRoad
                     GameObject go = hit.collider.gameObject;
                     if (go != null)
                     {
-                        GameObject wall = go.GetComponentInChildren<Transform>().gameObject;
-                        Destroy(wall, 2f);
+                        //Transform btn = go.GetComponentInChildren<Transform>();
+                        //GameObject wall = btn.GetChild(0).gameObject;
+
+                        // Had an issue with shrinking it which I didn't have time to fix
+                        //wall.GetComponent<BlockingCube>().ShrinkWall();
+
+                        Destroy(go, 0.5f);
 
                         Debug.Log("On Button");
                         return true;

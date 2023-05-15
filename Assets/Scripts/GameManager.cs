@@ -1,6 +1,7 @@
 namespace BlockyRoad
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     public class GameManager : MonoBehaviour
     {
@@ -12,6 +13,8 @@ namespace BlockyRoad
 
         public Player[] _players;
 
+        private float _levelReloadTimer = 2f;
+
         private void InstantiateLevel()
         {
             CurrentLevelGameObject = Instantiate(CurrentLevelData.LevelPrefab);
@@ -21,16 +24,7 @@ namespace BlockyRoad
         private void Start()
         {
             InstantiateLevel();
-        }
-
-        private void Update()
-        {
-            if (IsLevelComplete())
-            {
-                LoadNextLevel(AllLevels[1]);
-            }
-
-            PlayersCooledDown();
+            
         }
 
         public bool PlayersCooledDown()
@@ -56,22 +50,15 @@ namespace BlockyRoad
             }
 
             Debug.Log("[LEVEL] Level complete!");
-            return true;
-        }
 
-        public void LoadNextLevel(LevelData nextLevelData)
-        {
-            for (int i = 0; i < _players.Length; i++)
-            {
-                _players[i].ResetPlayerParams();
+            _levelReloadTimer -= Time.deltaTime;
+
+            if (_levelReloadTimer <= 0)
+            {                
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);                
             }
-
-            CurrentLevelGameObject.SetActive(false);
-
-            CurrentLevelData = nextLevelData;
-
-            CurrentLevelGameObject = Instantiate(CurrentLevelData.LevelPrefab);
-            CurrentLevel = CurrentLevelGameObject.GetComponent<Level>();
+            
+            return true;
         }
     }
 }

@@ -110,6 +110,8 @@ GameObject:
   - component: {fileID: 845093316973461833}
   - component: {fileID: 4037341213639026826}
   - component: {fileID: 3666949820000442546}
+  - component: {fileID: 5679710689100148399}
+  - component: {fileID: 637929928216731721}
   m_Layer: 0
   m_Name: BlockingCube
   m_TagString: Untagged
@@ -195,6 +197,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5679710689100148399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875466995068304534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a3da1fadb3e3c4eacf9384131c9c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StopScaling: 0
+--- !u!114 &637929928216731721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875466995068304534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba582b8702de4cc4aaf67d49417d2dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeshMani: {fileID: 5679710689100148399}
 --- !u!1 &3867857047926867265
 GameObject:
   m_ObjectHideFlags: 0
