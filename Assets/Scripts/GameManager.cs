@@ -1,10 +1,13 @@
 namespace BlockyRoad
 {
+    using AmyMathLib.Maths;
     using UnityEngine;
     using UnityEngine.SceneManagement;
 
     public class GameManager : MonoBehaviour
     {
+        const int MOUSE_CHARGE_MAX = 4;
+
         public LevelData[] AllLevels;
 
         public Level CurrentLevel;
@@ -14,6 +17,16 @@ namespace BlockyRoad
         public Player[] _players;
 
         private float _levelReloadTimer = 2f;
+
+        [SerializeField]
+        private float _mouseCharge = 0;
+
+        [SerializeField]
+        private int _playerCharge = 0;
+
+        public int PlayerCharge => _playerCharge;
+        public int TrueCharge => (int)_mouseCharge;
+        public int MaxCharge => MOUSE_CHARGE_MAX - 1;
 
         private void InstantiateLevel()
         {
@@ -25,6 +38,20 @@ namespace BlockyRoad
         {
             InstantiateLevel();
             
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButton(0) && _mouseCharge < MOUSE_CHARGE_MAX)
+            {
+                _playerCharge = 0;
+                _mouseCharge += Time.deltaTime;
+                _playerCharge = AMaths.Round(_mouseCharge);
+            }
+            else
+            {
+                _mouseCharge = 0;                
+            }
         }
 
         public bool PlayersCooledDown()

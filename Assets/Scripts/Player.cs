@@ -57,6 +57,7 @@ namespace BlockyRoad
         private bool _playerPathBlocked = false;
 
         public bool HasCompletedSide => _completedSide;
+        public bool PlayerCanTakeTurn => _playerCanTakeTurn;
 
         void Start()
         {
@@ -92,9 +93,9 @@ namespace BlockyRoad
         #region AML_Demo
         void Movement()
         {
-            int xMov = 1;
+            int xMov = _manager.PlayerCharge;
 
-            if (Input.GetMouseButtonDown(1) && _playerCanTakeTurn && _hasCooledDown && !_playerPathBlocked)
+            if (Input.GetMouseButtonDown(0) && _playerCanTakeTurn && _hasCooledDown && !_playerPathBlocked)
             {
                 _canLerp = true;
                 _hasMoved = true;
@@ -105,7 +106,7 @@ namespace BlockyRoad
 
                 // -- New implementation --
                 // Using AVector3 for the new positions, as well as ToUnityVector to apply these.
-                newPlayerPosition = new AVector3(transform.position.x + xMov, transform.position.y, transform.position.z);
+                newPlayerPosition = new AVector3(transform.position.x + 1, transform.position.y, transform.position.z);
 
                 // I want to implement lerping which is why this is commented out
                 //transform.position = AMaths.ToUnityVector(newPlayerPosition);

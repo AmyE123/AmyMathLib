@@ -140,6 +140,14 @@ namespace AmyMathLib.Maths
         }
         #endregion
 
+        #region Other Functions
+        public static int Round(float a)
+        {
+            int rv = (int)a;
+            return rv;
+        }
+        #endregion
+
         // TODO: Implement LERP V3
         public static AVector3 Lerp(AVector3 a, AVector3 b, float t)
         {
