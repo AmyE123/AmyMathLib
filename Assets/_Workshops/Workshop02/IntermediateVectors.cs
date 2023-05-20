@@ -1,65 +1,71 @@
-using UnityEngine;
-using AmyMathLib.Vector;
-using AmyMathLib.Maths;
-
-public class IntermediateVectors : MonoBehaviour
+namespace Workshop
 {
-    [SerializeField]
-    private GameObject _evader;
+    using UnityEngine;
+    using AmyMathLib.Vector;
+    using AmyMathLib.Maths;
 
-    [SerializeField]
-    private GameObject _pursuer;
-
-    [SerializeField]
-    private float _evaderSpeed = 10;
-
-    [SerializeField]
-    private float _pursuerSpeed = 5;
-
-    private AVector3 _previousEvaderPosition;
-    private AVector3 _evaderPosition;
-
-    private void Start()
+    /// <summary>
+    /// A demo showcasing how to use intermediate vectors with AmyMathLib
+    /// </summary>
+    public class IntermediateVectors : MonoBehaviour
     {
-        _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);
-    }
+        [SerializeField]
+        private GameObject _evader;
 
-    void Update()
-    {
-        _evaderPosition = AMaths.ToAVector(transform.position);
+        [SerializeField]
+        private GameObject _pursuer;
 
-        EvaderMovement();
-        PursuerMovement();
+        [SerializeField]
+        private float _evaderSpeed = 10;
 
-        _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);
-    }
+        [SerializeField]
+        private float _pursuerSpeed = 5;
 
-    void PursuerMovement()
-    {
-        AVector3 pursuerPosition = AMaths.ToAVector(_pursuer.transform.position);
-        AVector3 pursuerDirection = AVector3.SubtractVector3(AMaths.ToAVector(_evader.transform.position), pursuerPosition);
-        AVector3 pursuerDirectionNormalised = pursuerDirection.NormalizeVector();
+        private AVector3 _previousEvaderPosition;
+        private AVector3 _evaderPosition;
 
-        _pursuer.transform.position += AMaths.ToUnityVector(pursuerDirectionNormalised) * _pursuerSpeed * Time.deltaTime;
-    }
-
-    void EvaderMovement()
-    {
-        if (Input.GetKey(KeyCode.W))
+        private void Start()
         {
-            _evader.transform.Translate(Vector3.forward * Time.deltaTime * _evaderSpeed);
+            _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);
         }
-        if (Input.GetKey(KeyCode.S))
+
+        private void Update()
         {
-            _evader.transform.Translate(-1 * Vector3.forward * Time.deltaTime * _evaderSpeed);
+            _evaderPosition = AMaths.ToAVector(transform.position);
+
+            EvaderMovement();
+            PursuerMovement();
+
+            _previousEvaderPosition = AMaths.ToAVector(_evader.transform.position);
         }
-        if (Input.GetKey(KeyCode.A))
+
+        private void PursuerMovement()
         {
-            _evader.transform.Rotate(0, -1, 0);
+            AVector3 pursuerPosition = AMaths.ToAVector(_pursuer.transform.position);
+            AVector3 pursuerDirection = AVector3.SubtractVector3(AMaths.ToAVector(_evader.transform.position), pursuerPosition);
+            AVector3 pursuerDirectionNormalised = pursuerDirection.NormalizeVector();
+
+            _pursuer.transform.position += AMaths.ToUnityVector(pursuerDirectionNormalised) * _pursuerSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.D))
+
+        private void EvaderMovement()
         {
-            _evader.transform.Rotate(0, 1, 0);
+            if (Input.GetKey(KeyCode.W))
+            {
+                _evader.transform.Translate(Vector3.forward * Time.deltaTime * _evaderSpeed);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                _evader.transform.Translate(-1 * Vector3.forward * Time.deltaTime * _evaderSpeed);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                _evader.transform.Rotate(0, -1, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                _evader.transform.Rotate(0, 1, 0);
+            }
         }
     }
 }

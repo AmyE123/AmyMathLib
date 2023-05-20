@@ -1,35 +1,41 @@
-using UnityEngine;
-using AmyMathLib.Vector;
-using AmyMathLib.Maths;
-using System.Collections.Generic;
-
-public class BeginnerVectors : MonoBehaviour
+namespace Workshop
 {
-    [SerializeField]
-    GameObject[] GameObjects;
+    using UnityEngine;
+    using AmyMathLib.Vector;
+    using AmyMathLib.Maths;
+    using System.Collections.Generic;
 
-    [SerializeField]
-    List<AVector3> GameObjectPositions = new List<AVector3>();
-
-    [SerializeField]
-    List<float> Magnitudes = new List<float>();
-
-    void Start()
+    /// <summary>
+    /// A demo showcasing how to use vectors with AmyMathLib
+    /// </summary>
+    public class BeginnerVectors : MonoBehaviour
     {
-        GameObjectPositions.Add(AMaths.ToAVector(GameObjects[0].transform.position));
-        GameObjectPositions.Add(AMaths.ToAVector(GameObjects[1].transform.position));
+        [SerializeField]
+        GameObject[] GameObjects;
 
-        Magnitudes.Add(GameObjectPositions[0].GetLength());
-        Magnitudes.Add(GameObjectPositions[1].GetLength());
+        [SerializeField]
+        List<AVector3> GameObjectPositions = new List<AVector3>();
 
-        Debug.Log($"AE: GO1_MAG - {Magnitudes[0]} / GO2_MAG - {Magnitudes[1]}");
-    }
+        [SerializeField]
+        List<float> Magnitudes = new List<float>();
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Start()
         {
-            GameObjects[1].transform.position = GameObjectPositions[0].ToUnityVector3();
+            GameObjectPositions.Add(AMaths.ToAVector(GameObjects[0].transform.position));
+            GameObjectPositions.Add(AMaths.ToAVector(GameObjects[1].transform.position));
+
+            Magnitudes.Add(GameObjectPositions[0].GetLength());
+            Magnitudes.Add(GameObjectPositions[1].GetLength());
+
+            Debug.Log($"AE: Game Object 1 Magnitude - {Magnitudes[0]} / Game Object 2 Magnitude - {Magnitudes[1]}");
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameObjects[1].transform.position = GameObjectPositions[0].ToUnityVector3();
+            }
         }
     }
 }
