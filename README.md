@@ -6,7 +6,11 @@ My maths library, artefact and demos for my 'Maths for Games' module I took duri
 </p>
 
 ## Table of Contents
-1. [Additional Information](#additional-information)
+1. [Project Contents](#project-contents)
+    * [Amy's Maths Library](#amys-maths-library)
+    * [Artefact](#artefact)
+    * [Demo Examples](#demo-examples)
+    * [Profiling Tests](#profiling-tests)
 2. [Getting Started](#getting-started)
     * [Prerequisites](#prerequisites)
     * [Installing](#installing)
@@ -15,8 +19,18 @@ My maths library, artefact and demos for my 'Maths for Games' module I took duri
 5. [Coding Conventions](#coding-conventions)
 6. [Authors](#authors)
 
-## Additional Information
-Lorem ipsum...
+## Project Contents
+### Amy's Maths Library
+Located in the [AmyMathLib](Assets/_AmyMathLib) directory, you can see all of the classes created for my maths library
+
+### Artefact
+The artefact shows multiple maths functions in action, as a main 'Demo' project for this library. Located at [Assets/Scenes/BlockyRoad.unity](Assets/Scenes).
+
+### Demo Examples
+These demos show small snippets of how specific parts of library work. Located at [Assets/_Workshops](Assets/_Workshops).
+
+### Profiling Tests
+I conducted some small profiling tests to compare the performance of my libraries functions with Unity's respective functions. Located at [Assets/Scenes/ProfilingTests](Assets/Scenes/ProfilingTests).
 
 ## Getting Started
 These instructions will get you a copy of this game and library project up and running on your local machine for development and testing purposes.
