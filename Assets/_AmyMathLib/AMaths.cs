@@ -154,6 +154,18 @@ namespace AmyMathLib.Maths
             return a * (1.0f - t) + b * t;
         }
 
+        // TODO: Fix this
+        //public static AVector3 LerpEaser(AVector3 a, AVector3 b, float t)
+        //{
+        //    AVector3 l = a * (1.0f - t) + b * t;
+
+        //    float x = EaseInOutCubic(l.x);
+        //    float y = EaseInOutCubic(l.y);
+        //    float z = EaseInOutCubic(l.z);
+
+        //    return new AVector3(x, y, z);
+        //}
+
         // TODO: Implement LERP V2
         public static AVector2 Lerp(AVector2 a, AVector2 b, float t)
         {
@@ -172,6 +184,12 @@ namespace AmyMathLib.Maths
                 VectorCrossProduct(axis, vertex) * Mathf.Sin(angle);
 
             return rv;
+        }
+
+        //TODO: Fix this
+        public static float EaseInOutCubic(float x)
+        {
+            return x < 0.5 ? 4 * x * x * x : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
         }
     }
 }
