@@ -5,16 +5,25 @@ namespace BlockyRoad
     using AmyMathLib.Vector;
     using UnityEngine;
 
+    /// <summary>
+    /// A class responsible for manipulating meshes
+    /// using the maths, matrix and vector classes
+    /// under AmysMathsLib library
+    /// </summary>
     public class MeshManipulation : MonoBehaviour
     {
         private GameObject _gameObject;
 
-        Vector3[] ModelSpaceVertices;
-
-        public bool StopScaling;
+        private Vector3[] ModelSpaceVertices;
 
         private float X, Y, Z;
         private float go_X, go_Y, go_Z;
+
+        /// <summary>
+        /// A manual bool that can be changed
+        /// to stop a mesh from scaling
+        /// </summary>
+        public bool StopScaling;
 
         private void Start()
         {
@@ -23,13 +32,6 @@ namespace BlockyRoad
             go_X = _gameObject.transform.localScale.x;
             go_Y = _gameObject.transform.localScale.y;
             go_Z = _gameObject.transform.localScale.z;
-        }
-
-        public float GetMeshTimerValue(float lerpSpeed)
-        {
-            // A estimated value for the time
-            // it takes for the scalar lerp to be complete
-            return lerpSpeed / 3;
         }
 
         private bool InitializeMesh(GameObject gameObject)
@@ -57,6 +59,33 @@ namespace BlockyRoad
             return true;
         }
 
+        /// <summary>
+        /// An estimated value for the time it takes
+        /// for the scalar lerp to be complete.
+        /// </summary>
+        /// <param name="lerpSpeed">The desired speed</param>
+        /// <returns>A correct timer value</returns>
+        public float GetMeshTimerValue(float lerpSpeed)
+        {
+            //TODO: Find another solution as this isn't right.
+            return lerpSpeed / 3;
+        }
+
+        private float Lerp(float a, float b, float speed)
+        {
+            var lerp = AMaths.Lerp(a, b, Time.deltaTime * speed);
+
+            return lerp;
+        }
+
+        /// <summary>
+        /// Scaling an object using mesh manipulation and apply linear interpolation to the scaling
+        /// </summary>
+        /// <param name="scaleX">The desired scale of X</param>
+        /// <param name="scaleY">The desired scale of Y</param>
+        /// <param name="scaleZ">The desired scale of Z</param>
+        /// <param name="speed">The speed you want the lerp to go</param>
+        /// <returns>A value indicating whether the scaling could be completed</returns>
         public bool LerpScaleObject(float scaleX, float scaleY, float scaleZ, float speed)
         {
             if (InitializeMesh(_gameObject) && !StopScaling)
@@ -105,6 +134,13 @@ namespace BlockyRoad
             }
         }
 
+        /// <summary>
+        /// Scaling an object using mesh manipulation
+        /// </summary>
+        /// <param name="scaleX">The desired scale of X</param>
+        /// <param name="scaleY">The desired scale of Y</param>
+        /// <param name="scaleZ">The desired scale of Z</param>
+        /// <returns>A value indicating whether the scaling could be completed</returns>
         public void ScaleObject(float scaleX, float scaleY, float scaleZ)
         {
             if (InitializeMesh(_gameObject) && !StopScaling)
@@ -132,13 +168,6 @@ namespace BlockyRoad
                 MF_scale.mesh.RecalculateNormals();
                 MF_scale.mesh.RecalculateBounds();
             }
-        }
-
-        private float Lerp(float a, float b, float speed)
-        {
-            var lerp = AMaths.Lerp(a, b, Time.deltaTime * speed);
-
-            return lerp;
         }
     }
 }

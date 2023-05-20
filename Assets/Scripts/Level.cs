@@ -1,25 +1,34 @@
 namespace BlockyRoad
 {
-    using AmyMathLib.Maths;
     using AmyMathLib.Quaternion;
     using AmyMathLib.Vector;
     using UnityEngine;
 
+    /// <summary>
+    /// The level manager, responsible for all things
+    /// regarding the level like rotation, and active side
+    /// </summary>
     public class Level : MonoBehaviour
     {
         [Header("Level Data")]
         [SerializeField]
+        [Tooltip("Reference to the main manager")]
         private GameManager _manager;
 
         public enum Sides { North, South };
 
+        /// <summary>
+        /// The current active side
+        /// </summary>
         public Sides ActiveSide = Sides.North;
 
         [Header("Visual Data")]
         [SerializeField]
+        [Tooltip("A float representing the time during slerping")]
         private float _slerpTime;
 
         [SerializeField]
+        [Tooltip("The speed which the slerp is moving at")]
         private float _slerpSpeed;
 
         private bool _rotatingToSouth;
@@ -37,7 +46,7 @@ namespace BlockyRoad
             _finalRot = new AQuaternion(180 * Mathf.Deg2Rad, new AVector3(0, 0, 1)) * AQuaternion.ToAQuaternion(transform.rotation);
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space) && _manager.PlayersCooledDown())
             {
