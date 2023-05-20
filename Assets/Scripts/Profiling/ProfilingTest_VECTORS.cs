@@ -3,6 +3,9 @@ namespace Profiling
     using AmyMathLib.Vector;
     using UnityEngine;
 
+    /// <summary>
+    /// A profiling test of Unity's Transformation vs AmyMathLib's AVectors
+    /// </summary>
     public class ProfilingTest_VECTORS : MonoBehaviour
     {
         public GameObject Unity;

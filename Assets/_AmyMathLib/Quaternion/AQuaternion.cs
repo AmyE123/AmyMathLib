@@ -3,6 +3,9 @@
     using AmyMathLib.Vector;
     using UnityEngine;
 
+    /// <summary>
+    /// The AQuaternion class to replace Unity's Quaternion class
+    /// </summary>
     public class AQuaternion
     {
         public float w;
@@ -33,6 +36,9 @@
             v = new AVector3(x, y, z);
         }
 
+        /// <summary>
+        /// Sets the axis of the quaternion
+        /// </summary>
         public void SetAxis(AVector3 vector)
         {
             v.x = vector.x;
@@ -40,6 +46,10 @@
             v.z = vector.z;
         }
 
+
+        /// <summary>
+        /// Gets the axis of the quaternion
+        /// </summary>
         // I had some issues with this function, which were solved
         // through rubber ducking with my peers
         public AVector3 GetAxis()
@@ -51,6 +61,10 @@
             return v / Mathf.Sin(GetAngle() / 2);
         }
 
+        /// <summary>
+        /// Gets the angle of a quaternion
+        /// </summary>
+        /// <returns>The angle of the quaternion</returns>
         public float GetAngle()
         {
             return GetAxisAngle().w;
@@ -104,6 +118,11 @@
             return d * q;
         }
 
+        /// <summary>
+        /// Converts the Quaternion to an AQuaternion for use with AmyMathLib
+        /// </summary>
+        /// <param name="a">The quaternion to convert</param>
+        /// <returns>An AQuaternion with the values of the inputted quaternion</returns>
         public static AQuaternion ToAQuaternion(Quaternion a)
         {
             AQuaternion rv = new AQuaternion();
@@ -116,6 +135,11 @@
             return rv;
         }
 
+        /// <summary>
+        /// Converts the AQuaternion to a Unity Quaternion
+        /// </summary>
+        /// <param name="a">The AQuaternion to convert</param>
+        /// <returns>A quaternion with the values of the inputted AQuaternion</returns>
         public static Quaternion ToUnityQuaternion(AQuaternion a)
         {
             Quaternion rv = new Quaternion();
@@ -128,6 +152,11 @@
             return rv;
         }
 
+        /// <summary>
+        /// Converts an AVector3 to a Unity Quaternion, making the W axis = 0
+        /// </summary>
+        /// <param name="a">The AVector3 of your quaternion</param>
+        /// <returns>A unity Quaternion</returns>
         public static Quaternion ToUnityQuaternion(AVector3 a)
         {
             Quaternion rv = new Quaternion();

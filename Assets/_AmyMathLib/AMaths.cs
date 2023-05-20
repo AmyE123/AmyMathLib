@@ -3,6 +3,9 @@ namespace AmyMathLib.Maths
     using UnityEngine;
     using AmyMathLib.Vector;
 
+    /// <summary>
+    /// An AMaths class to replace Unity's Maths class
+    /// </summary>
     public class AMaths
     {
         #region Vector Functions
@@ -96,6 +99,11 @@ namespace AmyMathLib.Maths
             return rv;
         }
 
+        /// <summary>
+        /// Gets the direction from the euler angle
+        /// </summary>
+        /// <param name="EulerAngle">The euler angle to get the direction from</param>
+        /// <returns>A direction vector</returns>
         public static AVector3 EulerAngleToDirection(AVector3 EulerAngle)
         {
             AVector3 rv = new AVector3(0, 0, 0);
@@ -112,6 +120,12 @@ namespace AmyMathLib.Maths
             return rv;
         }
 
+        /// <summary>
+        /// The cross product of two vectors
+        /// </summary>
+        /// <param name="a">The first vector3</param>
+        /// <param name="b">The second vector3</param>
+        /// <returns>A vector3 of the cross product</returns>
         public static AVector3 VectorCrossProduct(AVector3 a, AVector3 b)
         {
             AVector3 c = new AVector3(0, 0, 0);
@@ -123,6 +137,11 @@ namespace AmyMathLib.Maths
             return c;
         }
 
+        /// <summary>
+        /// Converts a AVector2 to radians
+        /// </summary>
+        /// <param name="V">The AVector2 you want to convert</param>
+        /// <returns>The radian returned from the vector</returns>
         public static float VectorToRadians(AVector2 V)
         {
             float rv = 0.0f;
@@ -132,6 +151,11 @@ namespace AmyMathLib.Maths
             return rv;
         }
 
+        /// <summary>
+        /// Converts a radian to a AVector2
+        /// </summary>
+        /// <param name="angle">The angle which you want to convert</param>
+        /// <returns>The AVector2 from the radian</returns>
         public static AVector2 RadiansToVector(float angle)
         {
             AVector2 rv = new AVector2(Mathf.Cos(angle), Mathf.Sin(angle));
@@ -141,6 +165,11 @@ namespace AmyMathLib.Maths
         #endregion
 
         #region Other Functions
+        /// <summary>
+        /// Rounds a float number to a whole number by using casting
+        /// </summary>
+        /// <param name="a">The number to round</param>
+        /// <returns>A rounded integer number</returns>
         public static int Round(float a)
         {
             int rv = (int)a;
@@ -148,8 +177,38 @@ namespace AmyMathLib.Maths
         }
         #endregion
 
-        // TODO: Implement LERP V3
+        /// <summary>
+        /// Implementation of Linear Interpolation
+        /// </summary>
+        /// <param name="a">'From' AVector3</param>
+        /// <param name="b">'To' AVector3</param>
+        /// <param name="t">The time it takes for the lerp</param>
+        /// <returns>AVector3 value for the lerp</returns>
         public static AVector3 Lerp(AVector3 a, AVector3 b, float t)
+        {
+            return a * (1.0f - t) + b * t;
+        }
+
+        /// <summary>
+        /// Implementation of Linear Interpolation
+        /// </summary>
+        /// <param name="a">'From' AVector2</param>
+        /// <param name="b">'To' AVector2</param>
+        /// <param name="t">The time it takes for the lerp</param>
+        /// <returns>AVector2 value for the lerp</returns>
+        public static AVector2 Lerp(AVector2 a, AVector2 b, float t)
+        {
+            return a * (1.0f - t) + b * t;
+        }
+
+        /// <summary>
+        /// Implementation of Linear Interpolation
+        /// </summary>
+        /// <param name="a">'From' float</param>
+        /// <param name="b">'To' float</param>
+        /// <param name="t">The time it takes for the lerp</param>
+        /// <returns>float value for the lerp</returns>
+        public static float Lerp(float a, float b, float t)
         {
             return a * (1.0f - t) + b * t;
         }
@@ -165,17 +224,6 @@ namespace AmyMathLib.Maths
 
         //    return new AVector3(x, y, z);
         //}
-
-        // TODO: Implement LERP V2
-        public static AVector2 Lerp(AVector2 a, AVector2 b, float t)
-        {
-            return a * (1.0f - t) + b * t;
-        }
-
-        public static float Lerp(float a, float b, float t)
-        {
-            return a * (1.0f - t) + b * t;
-        }
 
         public static AVector3 RotateVertexAroundAxis(float angle, AVector3 axis, AVector3 vertex)
         {

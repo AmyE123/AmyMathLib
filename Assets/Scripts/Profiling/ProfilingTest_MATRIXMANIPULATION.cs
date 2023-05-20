@@ -5,6 +5,9 @@ namespace Profiling
     using AmyMathLib.Vector;
     using UnityEngine;
 
+    /// <summary>
+    /// A profiling test of Unity's Transformation vs AmyMathLib's Matrix Manipulation
+    /// </summary>
     public class ProfilingTest_MATRIXMANIPULATION : MonoBehaviour
     {
         [Header("Unity Transformation")]

@@ -2,10 +2,16 @@ namespace AmyMathLib.Matrix
 {
     using AmyMathLib.Vector;
 
+    /// <summary>
+    /// The AMatrix4x4 class to replace Unity's Matrix4x4 class
+    /// </summary>
     public class AMatrix4x4
     {
         public float[,] values;
 
+        /// <summary>
+        /// A Matrix4x4 constructor
+        /// </summary>
         public AMatrix4x4(AVector4 column1, AVector4 column2, AVector4 column3, AVector4 column4)
         {
             values = new float[4, 4];
@@ -35,6 +41,9 @@ namespace AmyMathLib.Matrix
             values[3, 3] = column4.w;
         }
 
+        /// <summary>
+        /// A Matrix4x4 constructor
+        /// </summary>
         public AMatrix4x4(AVector3 column1, AVector3 column2, AVector3 column3, AVector3 column4)
         {
             values = new float[4, 4];
@@ -64,6 +73,12 @@ namespace AmyMathLib.Matrix
             values[3, 3] = 1;
         }
 
+        /// <summary>
+        /// A Matrix4x4 identity. 
+        /// An identity matrix is used to find the inverse of a matrix. 
+        /// Also, an identity matrix is used to verify whether any two given matrices are inverses of each other.
+        /// See: https://www.cuemath.com/algebra/identity-matrix/
+        /// </summary>
         public static AMatrix4x4 Identity
         {
             get

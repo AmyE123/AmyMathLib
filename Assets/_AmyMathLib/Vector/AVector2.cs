@@ -2,6 +2,9 @@ namespace AmyMathLib.Vector
 {
     using UnityEngine;
 
+    /// <summary>
+    /// An AVector2 class to replace Unity's Vector2 class
+    /// </summary>
     public class AVector2
     {
         public float x, y;
@@ -35,6 +38,12 @@ namespace AmyMathLib.Vector
         #endregion
 
         #region Operator Functions
+        /// <summary>
+        /// Takes the vectors and adds them together
+        /// </summary>
+        /// <param name="a">The vector you want to add</param>
+        /// <param name="b">The other vector you want to add</param>
+        /// <returns>A new added AVector2</returns>
         public static AVector2 AddVector2(AVector2 a, AVector2 b)
         {
             AVector2 rv = new AVector2(a.x + b.x, a.y + b.y);
@@ -42,6 +51,12 @@ namespace AmyMathLib.Vector
             return rv;
         }
 
+        /// <summary>
+        /// Takes the vectors and subtracts them from each other
+        /// </summary>
+        /// <param name="a">The vector you want to subtract</param>
+        /// <param name="b">The other vector you want to subtract</param>
+        /// <returns>A new subtracted AVector2</returns>
         public static AVector2 SubtractVector2(AVector2 a, AVector2 b)
         {
             AVector2 rv = new AVector2(a.x - b.x, a.y - b.y);
