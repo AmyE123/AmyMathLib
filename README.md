@@ -21,7 +21,7 @@ My maths library, artefact and demos for my 'Maths for Games' module I took duri
 
 ## Project Contents
 ### Amy's Maths Library
-Located in the [AmyMathLib](Assets/_AmyMathLib) directory, you can see all of the classes created for my maths library
+Located in the [Assets/_AmyMathLib](Assets/_AmyMathLib) directory, you can see all of the classes created for my maths library
 
 ### Artefact
 The artefact shows multiple maths functions in action, as a main 'Demo' project for this library. Located at [Assets/Scenes/BlockyRoad.unity](Assets/Scenes).
