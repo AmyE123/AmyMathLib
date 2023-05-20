@@ -35,8 +35,8 @@ Here is how you can get the game running for development and testing purposes:
 ```
 
 ## Development Resources
-* [University - Lectures & Workshops](https://www.port.ac.uk/) - I attended lectures and workshops to help make everything here, thanks to my peers and my lecturers!
-* [3D Math Primer for Graphics and Game Development](https://gamemath.com/) - This book by Fletcher Dunn adn Ian Parberry was used a lot for research and learning
+* [University Lectures & Workshops](https://www.port.ac.uk/) - I attended lectures and workshops to help make everything here, thanks to my peers and my lecturers!
+* [3D Math Primer for Graphics and Game Development](https://gamemath.com/) - This book by Fletcher Dunn and Ian Parberry was used a lot for research and learning
 * [Mathematics for Computer Graphics](https://www.amazon.co.uk/Mathematics-Computer-Graphics-Undergraduate-Science-dp-1447175190/dp/1447175190/ref=dp_ob_title_bk) - This book by John Vince was also handy in research and learning
 
 ## Built With
